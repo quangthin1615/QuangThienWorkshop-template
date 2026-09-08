@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>4. Events Participated on AWS Internship Report</title>
+    <link>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/</link>
+    <description>Recent content in 4. Events Participated on AWS Internship Report</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Event 1: AWS VIETNAM COMMUNITY MEETUP</title>
+      <link>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/</guid>
+      <description>1. Event Name AWS VIETNAM COMMUNITY MEETUP&#xA;The event provides participants with an opportunity to connect with the community and update their knowledge of AWS, AI, and AI Agents.&#xA;2. Time and Location Time: Saturday, July 25, 2026, 08:30 - 12:00. Location: Grand Terra. Address: 36 Cat Linh, O Cho Dua, Hanoi, Vietnam. 3. My Role Role: Participant.&#xA;I participated in check-in, networking, followed the sharing sessions, interacted with the community, took a group photo, and participated in the Kahoot Quiz &amp;amp; Lucky Draw.</description>
+    </item>
+    <item>
+      <title>Event 2</title>
+      <link>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.2-event2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.2-event2/</guid>
+      <description>Event 2 Event Name: Event 2&#xA;Time: Not updated&#xA;Location: Not updated&#xA;Role: Participant</description>
+    </item>
+  </channel>
+</rss>

@@ -2,132 +2,412 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/1-create-new-aws-account/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.1-workshop-overview/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/1-create-new-aws-account/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.1-workshop-overview/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/1-create-new-aws-account/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.1-workshop-overview/"
                 />
   </url><url>
-    <loc>/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.1-monitor-cpu/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.1-generate-cpu-load/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/"
                 />
   </url><url>
-    <loc>/1-create-new-aws-account/1.1-find-account-id/</loc>
-  </url><url>
-    <loc>/2-mfa-setup-for-aws-user-root/1-virtual-mfa-device/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/2-mfa-setup-for-aws-user-root/1-virtual-mfa-device/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.1-create-verify-vpc/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/2-mfa-setup-for-aws-user-root/1-virtual-mfa-device/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/"
                 />
   </url><url>
-    <loc>/2-mfa-setup-for-aws-user-root/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.5-iam/5.5.1-create-cloudwatch-agent-role/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.1-launch-ec2/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/2-mfa-setup-for-aws-user-root/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.1-launch-ec2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/2-mfa-setup-for-aws-user-root/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.1-launch-ec2/"
                 />
   </url><url>
-    <loc>/2-mfa-setup-for-aws-user-root/2-u2f-security-key/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.1-install-agent/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/2-mfa-setup-for-aws-user-root/2-u2f-security-key/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/2-mfa-setup-for-aws-user-root/2-u2f-security-key/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/"
                 />
   </url><url>
-    <loc>/1-create-new-aws-account/1.2-update-account/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/</loc>
   </url><url>
-    <loc>/3-create-admin-user-and-group/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.1-blog-1/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/1-week1/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/2-proposal/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.2-monitor-logs/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.2-verify-alarm/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/3-create-admin-user-and-group/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.2-verify-alarm/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/3-create-admin-user-and-group/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.2-verify-alarm/"
                 />
   </url><url>
-    <loc>/1-create-new-aws-account/1.3-aws-account-alias/</loc>
-  </url><url>
-    <loc>/2-mfa-setup-for-aws-user-root/3-other-hardware-mfa-device/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.2-prerequisite/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/2-mfa-setup-for-aws-user-root/3-other-hardware-mfa-device/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.2-prerequisite/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/2-mfa-setup-for-aws-user-root/3-other-hardware-mfa-device/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.2-prerequisite/"
                 />
   </url><url>
-    <loc>/4-verify-new-account/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/4-verify-new-account/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/4-verify-new-account/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/"
                 />
   </url><url>
-    <loc>/1-create-new-aws-account/1.4-close-account/</loc>
-  </url><url>
-    <loc>/categories/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.2-create-public-subnet/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/categories/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.2-create-public-subnet/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.2-create-public-subnet/"
                 />
   </url><url>
-    <loc>/tags/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.2-connect-ssh/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/tags/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.2-connect-ssh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.2-connect-ssh/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.2-configure-agent/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.2-blog-2/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.2-event2/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/2-week2/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.3-verify-sns-email/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.3-configure-security-group/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.3-configure-security-group/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.3-configure-security-group/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.3-verify-ec2/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.3-verify-ec2/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.3-verify-ec2/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.3-start-and-verify/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.3-blog-3/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/3-week3/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.4-verify-recovery/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.4-verify-recovery/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.4-verify-recovery/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.4-configure-system-logs/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/4-week4/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.5-iam/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.5-iam/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.5-iam/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/5-week5/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/6-self-assessment/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/6-week6/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.7-cloudwatch-agent/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/7-sharing-and-feedback/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/7-week7/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.8-cloudwatch-logs/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.8-cloudwatch-logs/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.8-cloudwatch-logs/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/8-week8/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/9-week9/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.10-monitoring/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/10-week10/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.12-cleanup-resources/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/categories/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/tags/"
                 />
   </url>
 </urlset>

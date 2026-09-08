@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>5.4.1 Create / Verify VPC on AWS Internship Report</title>
+    <link>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/</link>
+    <description>Recent content in 5.4.1 Create / Verify VPC on AWS Internship Report</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

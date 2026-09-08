@@ -1,53 +1,94 @@
-# Change the default theme to be use when building the site with Hugo
+baseURL = "https://PhamQuangThien.github.io/QuangThienWorkshop-template/"
+languageCode = "vi-VN"
+title = "Báo cáo thực tập AWS"
+
 theme = "hugo-theme-learn"
 
-# For search functionality
+# =========================
+# NGÔN NGỮ
+# =========================
+
+defaultContentLanguage = "vi"
+defaultContentLanguageInSubdir = true
+
+# =========================
+# OUTPUT
+# =========================
+
 [outputs]
-home = [ "HTML", "RSS", "JSON"]
+home = ["HTML", "RSS", "JSON"]
+
+# =========================
+# PARAMS
+# =========================
 
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
-  themeVariant = "workshop"
-  # Git hub repo link
-  editURL = ""
-  description = ""
-  author = "journeyoftheaverageguy@gmail.com"
-  showVisitedLinks = true
-  disableBreadcrumb = false
-  disableNextPrev = false
-  
-[Languages]
-[Languages.en]
-title = "Create a new AWS account."
-weight = 1
-languageName = "English"
+themeVariant = "workshop"
+editURL = ""
+description = "Báo cáo thực tập AWS"
+author = "Phạm Quang Thiện"
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
-identifier = "AWS Study Group"
-url = "https://aws.amazon.com/blogs"
-weight = 20
+showVisitedLinks = true
+disableBreadcrumb = false
+disableNextPrev = false
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-facebook'></i> AWS Study Group - FB Group"
-identifier = "AWS Study Group FB"
-url = "https://www.facebook.com/groups/awsstudygroupfcj"
-weight = 20
+# =========================
+# TIẾNG VIỆT
+# =========================
 
-[Languages.vi]
-title = "Tạo mới tài khoản AWS"
-weight = 2
+[languages.vi]
+title = "Báo cáo thực tập AWS"
 languageName = "Tiếng Việt"
+weight = 1
+contentDir = "content/vi"
 
-[[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
-identifier = "AWS Study Group"
-url = "http://awsstudygroup.com"
+# =========================
+# TIẾNG ANH
+# =========================
+
+[languages.en]
+title = "AWS Internship Report"
+languageName = "English"
+weight = 2
+contentDir = "content/en"
+
+# =========================
+# MENU TIẾNG VIỆT
+# =========================
+
+[[languages.vi.menu.shortcuts]]
+name = "<i class='fab fa-aws'></i> AWS Blog"
+identifier = "aws-blog-vi"
+url = "https://aws.amazon.com/blogs/"
 weight = 20
 
-[[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB"
-identifier = "AWS Study Group FB"
+[[languages.vi.menu.shortcuts]]
+name = "<i class='fab fa-facebook'></i> AWS Study Group"
+identifier = "aws-facebook-vi"
 url = "https://www.facebook.com/groups/awsstudygroupfcj"
+weight = 21
+
+# =========================
+# MENU TIẾNG ANH
+# =========================
+
+[[languages.en.menu.shortcuts]]
+name = "<i class='fab fa-aws'></i> AWS Blog"
+identifier = "aws-blog-en"
+url = "https://aws.amazon.com/blogs/"
 weight = 20
 
+[[languages.en.menu.shortcuts]]
+name = "<i class='fab fa-facebook'></i> AWS Study Group"
+identifier = "aws-facebook-en"
+url = "https://www.facebook.com/groups/awsstudygroupfcj"
+weight = 21
+
+# =========================
+# CACHE
+# =========================
+
+[caches]
+
+[caches.images]
+dir = ":cacheDir/images"

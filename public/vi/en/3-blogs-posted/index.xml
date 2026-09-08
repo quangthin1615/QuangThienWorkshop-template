@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3. Blogs Posted on Báo cáo thực tập AWS</title>
+    <link>http://localhost:1313/QuangThienWorkshop-template/vi/en/3-blogs-posted/</link>
+    <description>Recent content in 3. Blogs Posted on Báo cáo thực tập AWS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <atom:link href="http://localhost:1313/QuangThienWorkshop-template/vi/en/3-blogs-posted/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
