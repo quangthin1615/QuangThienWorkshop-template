@@ -1,0 +1,1 @@
+Đặt ảnh minh chứng của Workshop 5 vào thư mục này. Tên ảnh có thể đặt theo từng bước, ví dụ 5.5.1-iam-role.png, 5.7.1-agent.png, 5.11.2-alarm.png.

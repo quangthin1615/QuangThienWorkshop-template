@@ -1,0 +1,379 @@
+[
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/",
+	"title": "1.Nhật ký công việc",
+	"tags": [],
+	"description": "",
+	"content": "Dưới đây là nhật ký công việc chi tiết trong 10 tuần tham gia chương trình Workforce Bootcamp - First Cloud AI Journey do Công ty TNHH Amazon Web Services Việt Nam (AWS Việt Nam) tổ chức, từ 25/07/2026 đến 28/09/2026.\nTuần 1: Tổng quan AWS và Cloud Computing Tuần 2: AWS Core Services - EC2, S3, IAM Tuần 3: AWS Networking - VPC, Subnet, Internet Gateway Tuần 4: Security Group và định tuyến mạng Tuần 5: AWS Lambda và Serverless Tuần 6: Amazon RDS, DynamoDB và quản lý dữ liệu Tuần 7: CloudWatch, Logs và CloudTrail Tuần 8: ELB và Auto Scaling Tuần 9: Docker và Amazon ECS Tuần 10: Dự án tổng hợp, kiểm thử và Cleanup "
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.1-workshop-overview/",
+	"title": "5.1 Tổng quan Workshop",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu Xây dựng và kiểm thử một hệ thống AWS Monitoring thực tế cho một EC2 instance.\nHệ thống thu thập log hệ thống và metric hiệu năng, theo dõi CPU, phát hiện tải cao thông qua CloudWatch Alarm và gửi email cảnh báo thông qua Amazon SNS.\nKiến trúc giám sát EC2 → CloudWatch Agent → CloudWatch Logs / Metrics → CloudWatch Alarm → SNS → Email\nCác dịch vụ AWS sử dụng Amazon EC2: máy chủ Linux được giám sát. AWS IAM: cấp quyền cho CloudWatch Agent. Amazon VPC: cung cấp môi trường mạng. Amazon CloudWatch: thu thập Logs/Metrics và tạo Alarm. Amazon SNS: gửi email khi Alarm thay đổi trạng thái. Kết quả mong đợi Sau Workshop, hệ thống phải có khả năng thu thập log, theo dõi CPU, kích hoạt Alarm khi CPU vượt 70%, gửi email cảnh báo và chuyển Alarm trở lại OK khi tải CPU giảm.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.10-monitoring/5.10.1-check-metrics/",
+	"title": "5.10.1 Kiểm tra Metrics",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra CPUUtilization Vào CloudWatch → Metrics. Chọn EC2 → Per-Instance Metrics. Tìm instance Monitoring-Lab-Instance. Mở metric CPUUtilization. Quan sát dữ liệu theo thời gian. CloudWatch Agent publish dữ liệu theo chu kỳ và có thể cần chờ vài phút trước khi dữ liệu xuất hiện đầy đủ.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.1-install-stress/",
+	"title": "5.11.1 Tạo tải CPU",
+	"tags": [],
+	"description": "",
+	"content": "Trong terminal SSH, cài công cụ stress:\nsudo yum install stress -y Chạy tải CPU trong 5 phút:\nstress --cpu 2 --timeout 300 Trong thời gian chạy, CPU tăng cao và tạo điều kiện để Alarm được kích hoạt.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/",
+	"title": "5.3.1 Chọn AWS Region",
+	"tags": [],
+	"description": "",
+	"content": "Chọn Region Đăng nhập AWS Management Console. Ở thanh Region, chọn Asia Pacific (Sydney) / ap-southeast-2. Đảm bảo các dịch vụ EC2, VPC, IAM, CloudWatch và SNS được thao tác trong đúng môi trường của lab. Kết quả Region sử dụng trong toàn bộ bài lab là:\nap-southeast-2 (Sydney)\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.1-create-verify-vpc/",
+	"title": "5.4.1 Tạo / Kiểm tra VPC",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra VPC Vào VPC Console → Your VPCs. Chọn Default VPC. Kiểm tra VPC ID theo môi trường lab. Kiểm tra Internet Gateway đã được gắn với VPC. Kiểm tra route 0.0.0.0/0 đi tới Internet Gateway. Kết quả Default VPC được sử dụng làm môi trường mạng cho EC2.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.1-launch-ec2/",
+	"title": "5.6.1 Khởi tạo EC2",
+	"tags": [],
+	"description": "",
+	"content": "Tạo EC2 Instance Vào EC2 Console → Instances → Launch instance. Name: Monitoring-Lab-Instance. AMI: Amazon Linux 2023. Instance type: t3.micro. Tạo key pair monitoring-lab-key.pem với RSA, định dạng .pem. Network settings: VPC: Default VPC Subnet: public-subnet-monitoring Auto-assign Public IP: Enable Security Group: cho phép SSH từ My IP. Advanced details → IAM instance profile: chọn EC2-CloudWatchAgent-Role. Bấm Launch instance. Chờ instance chuyển sang Running và Status Check đạt. Kết quả EC2 Monitoring-Lab-Instance được tạo thành công.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/",
+	"title": "5.9.1 Tạo Alarm",
+	"tags": [],
+	"description": "",
+	"content": "Cấu hình điều kiện Alarm sử dụng:\nMetric: CPUUtilization Statistic: Average Period: 5 minutes Condition: Greater than 70 Sau khi chọn metric và điều kiện, chuyển sang bước Configure actions.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/4-c%C3%A1c-s%E1%BB%B1-ki%E1%BB%87n-%C4%91%C3%A3-tham-gia/4.1-event1/",
+	"title": "Event 1: AWS VIETNAM COMMUNITY MEETUP",
+	"tags": [],
+	"description": "",
+	"content": "1. Tên sự kiện AWS VIETNAM COMMUNITY MEETUP\nSự kiện giúp người tham dự giao lưu với cộng đồng và cập nhật các kiến thức mới về AWS, AI và AI Agent.\n2. Thời gian và địa điểm Thời gian: Thứ Bảy, ngày 25-07-2026, 08:30 - 12:00. Địa điểm: Grand Terra. Địa chỉ: 36 Cát Linh, Ô Chợ Dừa, Hà Nội, Vietnam. 3. Vai trò của bản thân Vai trò: Người tham dự.\nEm tham gia check-in, networking, theo dõi các phiên chia sẻ, giao lưu với cộng đồng, chụp ảnh tập thể và tham gia Kahoot Quiz \u0026amp; Lucky Draw.\n4. Nội dung chính của sự kiện 4.1. Check-in \u0026amp; Networking Thời gian: 08:30 - 09:00\nNgười tham dự check-in, làm quen và giao lưu với các thành viên trong cộng đồng trước khi chương trình bắt đầu.\nBài học: Networking giúp mở rộng mối quan hệ và tạo cơ hội trao đổi kiến thức với những người cùng quan tâm đến công nghệ.\n4.2. Community Introduction Thời gian: 09:00 - 09:20\nSpeakers: Anh Ho \u0026amp; Phong Pham\nPhần giới thiệu các hoạt động của cộng đồng, tạo môi trường để các thành viên giao lưu, chia sẻ kiến thức và kết nối với nhau.\nBài học: Cộng đồng công nghệ là môi trường hữu ích để học hỏi kinh nghiệm và cập nhật những xu hướng mới.\n4.3. OpenClaw – The Rise and Practice of Open-Source AI Agents Thời gian: 09:20 - 09:50\nSpeaker: Tuan Vu\nNội dung giới thiệu về OpenClaw và sự phát triển của AI Agent mã nguồn mở, từ kiến trúc, cách Agent sử dụng tools/skills đến các ứng dụng thực tế.\nBài trình bày cũng đề cập đến các rủi ro như Skill Injection, Prompt Injection và Privilege Escalation, đồng thời nhấn mạnh các nguyên tắc Least Privilege, Execution Isolation và Human-in-the-loop.\nBài học: AI Agent có khả năng thực hiện nhiều tác vụ nhưng cần được kiểm soát quyền truy cập và bảo mật ngay từ khi thiết kế.\n4.4. From AI Trends to Business Value Thời gian: 09:50 - 10:20\nSpeakers: Nguyen Thu \u0026amp; Nam La\nPhiên trình bày tập trung vào việc chuyển đổi các xu hướng AI thành giá trị thực tế cho doanh nghiệp, đặc biệt trong hoạt động kinh doanh và Sales.\nBài học: Khi ứng dụng AI, cần quan tâm không chỉ đến công nghệ mà còn đến giá trị thực tế mà AI có thể tạo ra cho doanh nghiệp.\n4.5. Tea Break, Group Photo \u0026amp; Networking Thời gian: 10:20 - 10:40\nNgười tham dự nghỉ giải lao, chụp ảnh tập thể và tiếp tục giao lưu, trao đổi với các thành viên trong cộng đồng.\nBài học: Hoạt động giao lưu giúp tăng khả năng kết nối và tạo cơ hội trao đổi thêm về những kiến thức đã được chia sẻ.\n4.6. Ship Fast with AI, Not by Thời gian: 10:40 - 11:10\nSpeaker: Henry (Duc) Bui\nNội dung tập trung vào việc sử dụng AI để tăng tốc quá trình write → run → debug, nhưng developer vẫn cần kiểm soát architecture, design, interfaces và security.\nBài trình bày nhấn mạnh việc chuẩn hóa kiến thức thành lint rules, CI checks, skills và documentation để có thể tái sử dụng.\nBài học: AI giúp tăng năng suất nhưng developer vẫn giữ vai trò quan trọng trong thiết kế, kiểm tra và đảm bảo chất lượng phần mềm.\n4.7. Selecting the Right AI Agent Pattern on AWS Thời gian: 11:10 - 11:40\nSpeaker: Dzung Luong\nPhiên trình bày giới thiệu về việc lựa chọn pattern phù hợp khi xây dựng hệ thống AI Agent trên AWS và các yếu tố cần cân nhắc khi triển khai.\nBài học: Khi xây dựng AI Agent trên AWS cần lựa chọn kiến trúc phù hợp và quan tâm đến permission, security, isolation và khả năng quan sát hệ thống.\n4.8. Kahoot Quiz \u0026amp; Lucky Draw Thời gian: 11:40 - 12:00\nChương trình kết thúc bằng Kahoot Quiz và Lucky Draw, giúp người tham dự tương tác và ôn lại các nội dung đã được chia sẻ.\nBài học: Các hoạt động tương tác giúp củng cố kiến thức và tạo không khí kết nối giữa các thành viên.\n5. Bài học rút ra Sau khi tham gia sự kiện, em rút ra một số bài học:\nHiểu rõ hơn về AI Agent và cách Agent sử dụng tools/skills để thực hiện nhiệm vụ. Nhận thức được security và quyền truy cập là yếu tố quan trọng khi xây dựng Agent. Hiểu vai trò của nguyên tắc Least Privilege trong kiểm soát quyền. AI có thể hỗ trợ tăng tốc phát triển phần mềm nhưng developer vẫn giữ vai trò kiểm soát architecture, design và chất lượng. Kiến thức và kinh nghiệm nên được chuẩn hóa thành tài liệu, quy tắc hoặc công cụ để có thể tái sử dụng. 6. Đóng góp cá nhân Em tham gia đầy đủ chương trình, chủ động theo dõi các phiên chia sẻ, ghi nhận kiến thức về AWS, AI và AI Agent, đồng thời tham gia networking và các hoạt động tương tác của sự kiện.\n7. Hình ảnh minh chứng Hình ảnh chụp cùng các diễn giả và thành viên cộng đồng tại sự kiện AWS VIETNAM COMMUNITY MEETUP.\n8. Kết luận AWS VIETNAM COMMUNITY MEETUP là một trải nghiệm bổ ích trong quá trình thực tập, giúp em có thêm kiến thức thực tế về AWS, AI và AI Agent.\nBên cạnh kiến thức chuyên môn, sự kiện giúp em nhận thấy vai trò quan trọng của cộng đồng công nghệ trong việc chia sẻ kiến thức, trao đổi kinh nghiệm và kết nối những người cùng quan tâm đến AWS và các công nghệ mới.\nThông qua hoạt động networking và giao lưu với cộng đồng, em có thêm cơ hội học hỏi từ những người có kinh nghiệm thực tế, đồng thời hiểu hơn về cách các công nghệ như AI Agent và AWS đang được ứng dụng trong thực tế.\nQua sự kiện, em có thêm động lực để tiếp tục học tập, nghiên cứu AWS, AI và tích cực tham gia các hoạt động cộng đồng trong thời gian tới.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.1-blog-1/",
+	"title": "Giám sát Amazon EC2 bằng Amazon CloudWatch và cảnh báo tự động",
+	"tags": [],
+	"description": "",
+	"content": "1. Tổng quan Khi triển khai ứng dụng trên Amazon EC2, việc instance đang chạy không đồng nghĩa hệ thống luôn khỏe mạnh. CPU có thể tăng đột biến, lưu lượng mạng bất thường hoặc tài nguyên tiến gần giới hạn. Vì vậy cần một cơ chế theo dõi, phát hiện và cảnh báo.\nAmazon CloudWatch cung cấp khả năng thu thập, trực quan hóa metric, xây dựng dashboard và tạo CloudWatch Alarm. Với EC2, các metric thường được theo dõi gồm CPUUtilization, NetworkIn, NetworkOut, DiskReadOps và DiskWriteOps.\n2. Kiến trúc Luồng cơ bản:\nAmazon EC2 → CloudWatch Metrics → CloudWatch Dashboard/Alarm → thông báo hoặc hành động vận hành\nEC2 phát sinh metric; CloudWatch tiếp nhận và lưu trữ metric. Alarm đánh giá metric theo điều kiện đã cấu hình và thay đổi trạng thái khi điều kiện được đáp ứng.\n3. Theo dõi CPU CPUUtilization là metric dễ sử dụng để bắt đầu giám sát. Ví dụ, CPU duy trì trên 80% trong một khoảng thời gian có thể là dấu hiệu workload tăng hoặc ứng dụng gặp vấn đề.\nBiểu đồ giúp xác định mức bình thường, thời điểm tải tăng, các spike và xu hướng dài hạn. Ngưỡng nên dựa trên workload thực tế thay vì đặt tùy ý.\n4. CloudWatch Alarm Một alarm có thể sử dụng:\nMetric: EC2 CPUUtilization Statistic: Average Period: 5 phút Threshold: lớn hơn 80% Action: gửi thông báo qua SNS Khi điều kiện thỏa mãn, alarm chuyển sang ALARM. Khi metric trở lại vùng an toàn, alarm có thể trở về OK.\n5. Ví dụ thực tế Một web server bình thường sử dụng CPU 20–40%. Khi có lượng truy cập lớn, CPU vượt 80%.\nQuy trình:\nEC2 phát sinh CPU cao. CloudWatch ghi nhận metric. Alarm đánh giá điều kiện. Alarm chuyển sang ALARM. SNS có thể gửi thông báo. Quản trị viên kiểm tra ứng dụng và log. Khi tải giảm, alarm trở về OK. 6. Bài học rút ra Giám sát không chỉ là xem biểu đồ. Giá trị nằm ở việc biến metric thành thông tin có thể hành động, tạo thành chu trình monitor → detect → alert → respond.\n7. Nguồn tham khảo AWS News Blog – Amazon CloudWatch – Alarm Actions\nAWS Compute Blog – Automating Amazon EC2-Windows EBS Volumes monitoring and creating alarms\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/1-week1/",
+	"title": "Tuần 1: Tổng quan AWS và Cloud Computing",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu tổng quan về điện toán đám mây và AWS. Tìm hiểu Region, Availability Zone và kiến trúc tổng quan AWS. Làm quen với AWS Management Console và môi trường thực hành. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 Tổng quan AWS và Cloud Computing 25/07/2026 31/07/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 25/07/2026 31/07/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 25/07/2026 31/07/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 1 Hiểu các khái niệm cơ bản về Cloud Computing và AWS. Làm quen với AWS Console và môi trường lab. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/2-b%E1%BA%A3n-%C4%91%E1%BB%81-xu%E1%BA%A5t/",
+	"title": "2. Bản đề xuất",
+	"tags": [],
+	"description": "",
+	"content": "AWS Monitoring \u0026amp; Alerting System Kiến trúc giám sát và cảnh báo Amazon EC2 trên AWS 1. Tóm tắt điều hành Đề xuất này trình bày giải pháp xây dựng một hệ thống giám sát và cảnh báo cơ bản cho Amazon EC2 trên nền tảng AWS. Mục tiêu của hệ thống là theo dõi tình trạng hoạt động của EC2 instance, thu thập các thông tin giám sát và log hệ thống, phát hiện các trường hợp CPU sử dụng vượt ngưỡng cho phép và gửi cảnh báo đến người quản trị.\nHệ thống sử dụng các dịch vụ AWS gồm Amazon EC2, Amazon CloudWatch, CloudWatch Agent, Amazon SNS, IAM và Amazon VPC. EC2 đóng vai trò là máy chủ cần được giám sát. CloudWatch Agent được cài đặt trên EC2 để thu thập log hệ thống và các thông tin giám sát. CloudWatch chịu trách nhiệm lưu trữ metrics, logs và theo dõi trạng thái của hệ thống thông qua Alarm. Khi CPU vượt ngưỡng được cấu hình, CloudWatch Alarm sẽ chuyển trạng thái từ OK sang In alarm và gửi thông báo thông qua Amazon SNS đến email người quản trị.\nToàn bộ quy trình được thiết kế theo mô hình:\nEC2 → CloudWatch Agent → CloudWatch Metrics / Logs → CloudWatch Alarm → SNS → Email\nGiải pháp giúp xây dựng một quy trình hoàn chỉnh từ giám sát → phát hiện → cảnh báo → recovery, đồng thời giúp người thực tập hiểu được cách triển khai hệ thống monitoring cơ bản trên AWS.\n2. Tuyên bố vấn đề Vấn đề hiện tại Khó theo dõi trạng thái máy chủ: Khi hệ thống có nhiều EC2 instance, việc kiểm tra thủ công CPU, bộ nhớ và log trên từng máy chủ mất nhiều thời gian. Không phát hiện kịp thời tình trạng quá tải: Nếu CPU của EC2 tăng cao trong thời gian dài nhưng không có hệ thống cảnh báo, quản trị viên có thể không phát hiện được sự cố kịp thời. Log phân tán trên máy chủ: Log hệ thống được lưu trực tiếp trên EC2 khiến việc kiểm tra và theo dõi từ xa trở nên khó khăn. Thiếu cơ chế cảnh báo tự động: Khi xảy ra sự cố, hệ thống không tự động gửi thông báo đến người quản trị. Khó kiểm tra quá trình recovery: Nếu không có monitoring và Alarm, khó xác định chính xác thời điểm hệ thống trở lại trạng thái bình thường. Giải pháp đề xuất Hệ thống được thiết kế theo nguyên tắc tập trung việc giám sát và cảnh báo trên Amazon CloudWatch.\nKiến trúc bao gồm các thành phần chính:\nEC2 Instance: Chạy hệ điều hành Amazon Linux 2023 và đóng vai trò là máy chủ cần giám sát. IAM Role: Cung cấp quyền cần thiết để EC2 gửi dữ liệu monitoring và log lên CloudWatch. CloudWatch Agent: Được cài đặt trên EC2 để thu thập log hệ thống và dữ liệu monitoring. CloudWatch Metrics: Theo dõi các chỉ số hoạt động của EC2, trong đó có CPU Utilization. CloudWatch Logs: Tập trung và lưu trữ log từ EC2. CloudWatch Alarm: Giám sát CPU và phát hiện khi CPU vượt ngưỡng 70%. Amazon SNS: Nhận thông báo từ CloudWatch Alarm và gửi cảnh báo. Email: Nhận thông báo cảnh báo từ SNS. Lợi ích Giám sát tập trung: Các metrics và logs của EC2 được theo dõi trên CloudWatch. Cảnh báo tự động: CloudWatch Alarm tự động phát hiện CPU vượt ngưỡng. Thông báo nhanh chóng: SNS gửi cảnh báo trực tiếp đến email. Theo dõi recovery: Có thể xác nhận Alarm chuyển từ In alarm trở lại OK. Dễ triển khai và mở rộng: Mô hình có thể áp dụng cho nhiều EC2 instance và mở rộng thêm nhiều loại metrics khác. 3. Kiến trúc giải pháp Sơ đồ kiến trúc tổng thể Chi tiết các thành phần trong kiến trúc 1. Amazon VPC \u0026amp; Public Subnet EC2 instance được triển khai trong môi trường Amazon VPC và Public Subnet để có thể kết nối Internet phục vụ quá trình quản trị và thực hành.\nMôi trường thực tế sử dụng:\nVPC: vpc-05c77177c5e1b6477 Subnet: public-subnet-monitoring Subnet CIDR: 172.31.0.0/20 Availability Zone: ap-southeast-2a 2. Security Group Security Group được sử dụng để kiểm soát lưu lượng truy cập đến EC2.\nCấu hình chính:\nInbound: SSH TCP port 22 từ My IP. Outbound: Cho phép EC2 kết nối ra ngoài phục vụ việc cài đặt và gửi dữ liệu monitoring. 3. Amazon EC2 EC2 là máy chủ chính được sử dụng để thực hiện bài thực hành monitoring.\nThông tin triển khai:\nInstance name: Monitoring-Lab-Instance Instance type: t3.micro Operating System: Amazon Linux 2023 Region: ap-southeast-2 (Sydney) 4. IAM Role IAM Role EC2-CloudWatchAgent-Role được gắn với EC2 instance nhằm cung cấp quyền cho CloudWatch Agent gửi dữ liệu monitoring và logs lên CloudWatch.\nPolicy chính:\nCloudWatchAgentServerPolicy\n5. CloudWatch Agent CloudWatch Agent được cài đặt trực tiếp trên EC2 instance.\nAgent có nhiệm vụ thu thập dữ liệu monitoring và log hệ thống, sau đó gửi dữ liệu lên Amazon CloudWatch.\nVersion được sử dụng:\n1.300069.1\n6. CloudWatch Metrics CloudWatch Metrics được sử dụng để theo dõi các chỉ số hoạt động của EC2.\nTrong workshop, metric quan trọng nhất là:\nCPUUtilization\nMetric này được sử dụng làm cơ sở để tạo CloudWatch Alarm.\n7. CloudWatch Logs CloudWatch Logs được sử dụng để tập trung log từ EC2.\nCác Log Group được sử dụng:\nmessages secure Thời gian lưu trữ log:\n7 ngày\n8. CloudWatch Alarm CloudWatch Alarm được cấu hình để theo dõi CPU Utilization.\nAlarm:\nHigh-CPU-Alarm-Monitoring-Lab\nNgưỡng:\nCPU \u0026gt; 70% trong 5 phút\nKhi CPU vượt ngưỡng, Alarm chuyển trạng thái:\nOK → In alarm\nKhi CPU giảm trở lại mức bình thường:\nIn alarm → OK\n9. Amazon SNS Amazon SNS được sử dụng để gửi thông báo khi CloudWatch Alarm thay đổi trạng thái.\nSNS Topic:\nsystem-alerts\nSNS gửi email cảnh báo đến địa chỉ email đã đăng ký và xác nhận subscription.\n4. Triển khai kỹ thuật Các giai đoạn triển khai Giai đoạn 1: Chuẩn bị môi trường AWS\nTạo hoặc sử dụng Amazon VPC. Xác định Public Subnet. Cấu hình Security Group. Chuẩn bị quyền IAM cho EC2. Giai đoạn 2: Triển khai Amazon EC2\nTạo EC2 instance. Sử dụng Amazon Linux 2023. Chọn instance type t3.micro. Gắn IAM Role EC2-CloudWatchAgent-Role. Kiểm tra trạng thái EC2 sau khi khởi chạy. Giai đoạn 3: Cài đặt CloudWatch Agent\nKết nối tới EC2 thông qua SSH. Cài đặt CloudWatch Agent. Kiểm tra version Agent. Tạo và cấu hình file configuration. Khởi động CloudWatch Agent. Kiểm tra trạng thái Agent. Giai đoạn 4: Cấu hình CloudWatch Logs\nCấu hình Agent thu thập log hệ thống. Gửi log từ EC2 lên CloudWatch Logs. Kiểm tra Log Group messages. Kiểm tra Log Group secure. Kiểm tra các log events. Giai đoạn 5: Cấu hình CloudWatch Alarm\nChọn metric CPUUtilization. Thiết lập ngưỡng CPU trên 70%. Cấu hình thời gian đánh giá 5 phút. Đặt tên Alarm High-CPU-Alarm-Monitoring-Lab. Kiểm tra trạng thái ban đầu của Alarm. Giai đoạn 6: Cấu hình Amazon SNS\nTạo SNS Topic system-alerts. Tạo email subscription. Xác nhận subscription. Liên kết SNS với CloudWatch Alarm. Kiểm tra khả năng nhận email cảnh báo. Giai đoạn 7: Kiểm thử hệ thống\nTạo tải CPU bằng công cụ stress. Theo dõi CPU Utilization. Kiểm tra Alarm chuyển sang In alarm. Kiểm tra SNS gửi email. Dừng tải CPU. Kiểm tra CPU giảm về bình thường. Xác nhận Alarm trở lại OK. Yêu cầu kỹ thuật \u0026amp; Bảo mật IAM Role: EC2 sử dụng IAM Role để truy cập các dịch vụ AWS cần thiết thay vì lưu Access Key trực tiếp trên máy chủ. Security Group: Chỉ cho phép SSH TCP port 22 từ địa chỉ IP quản trị. CloudWatch Monitoring: Theo dõi trạng thái hoạt động của EC2 thông qua metrics và logs. SNS Notification: Chỉ sử dụng email subscription đã được xác nhận để nhận cảnh báo. Resource Cleanup: Dừng EC2 sau khi hoàn thành workshop để tránh phát sinh chi phí không cần thiết. 5. Lộ trình \u0026amp; Mốc triển khai +--------------------------------------------------------------------------------+ | Giai đoạn 1: Chuẩn bị môi trường AWS | | - Xác định VPC, Public Subnet và Security Group | | - Chuẩn bị IAM Role | +--------------------------------------------------------------------------------+ | v +--------------------------------------------------------------------------------+ | Giai đoạn 2: Triển khai EC2 | | - Tạo Monitoring-Lab-Instance | | - Cấu hình Amazon Linux 2023 và SSH | +--------------------------------------------------------------------------------+ | v +--------------------------------------------------------------------------------+ | Giai đoạn 3: Cấu hình CloudWatch Agent | | - Cài đặt CloudWatch Agent | | - Cấu hình Metrics và Logs | | - Kiểm tra Agent hoạt động | +--------------------------------------------------------------------------------+ | v +--------------------------------------------------------------------------------+ | Giai đoạn 4: Cấu hình CloudWatch \u0026amp; SNS | | - Tạo CloudWatch Alarm | | - Cấu hình ngưỡng CPU \u0026gt; 70% | | - Tạo SNS Topic và Email Subscription | +--------------------------------------------------------------------------------+ | v +--------------------------------------------------------------------------------+ | Giai đoạn 5: Kiểm thử \u0026amp; Recovery | | - Tạo tải CPU | | - Kiểm tra Alarm chuyển In alarm | | - Kiểm tra email SNS | | - Dừng tải và xác nhận Alarm trở lại OK | +--------------------------------------------------------------------------------+ 6. Ước tính ngân sách Workshop được thiết kế theo hướng đơn giản và tiết kiệm chi phí, sử dụng các tài nguyên AWS cần thiết cho mục đích thực hành.\nDịch vụ AWS Cấu hình / Quy mô ước tính Chi phí ước tính Amazon EC2 t3.micro, sử dụng trong thời gian thực hành Phụ thuộc thời gian sử dụng Amazon CloudWatch Metrics, Logs và Alarm Phụ thuộc mức sử dụng CloudWatch Agent Cài đặt trên EC2 Không có phí riêng Amazon SNS 1 Topic + Email Subscription Chi phí thấp / phụ thuộc sử dụng Amazon VPC VPC và Public Subnet Không tính phí riêng cho VPC/Subnet Security Group SSH TCP/22 Không tính phí riêng IAM Role EC2-CloudWatchAgent-Role Không tính phí riêng Điểm tối ưu chi phí:\nSử dụng instance type t3.micro phù hợp cho môi trường thực hành. Chỉ chạy EC2 trong thời gian cần thiết. Dừng EC2 sau khi hoàn thành kiểm thử. Cấu hình thời gian lưu trữ CloudWatch Logs là 7 ngày. Theo dõi AWS Billing để kiểm soát chi phí phát sinh. 7. Đánh giá rủi ro Ma trận rủi ro \u0026amp; Chiến lược giảm thiểu Rủi ro tiềm ẩn Mức độ ảnh hưởng Xác suất Chiến lược giảm thiểu EC2 không thể kết nối SSH Trung bình Trung bình Kiểm tra Public IP, Security Group và quyền truy cập TCP port 22. CloudWatch Agent không hoạt động Cao Thấp Kiểm tra service status, configuration và IAM Role của EC2. Không xuất hiện Log Group Trung bình Trung bình Kiểm tra cấu hình CloudWatch Agent và quyền CloudWatchAgentServerPolicy. CPU không vượt ngưỡng Alarm Trung bình Thấp Sử dụng công cụ stress để tạo tải CPU và kiểm tra lại metric. SNS không gửi email Cao Thấp Kiểm tra SNS subscription đã được xác nhận và kiểm tra cấu hình Alarm Action. Alarm không trở lại OK Trung bình Thấp Dừng tiến trình tạo tải CPU và tiếp tục theo dõi CPU Utilization. Phát sinh chi phí AWS Trung bình Trung bình Dừng EC2 và kiểm tra tài nguyên sau khi hoàn thành workshop. 8. Kết quả kỳ vọng Xây dựng thành công hệ thống monitoring: Triển khai được hệ thống giám sát cơ bản cho Amazon EC2 bằng CloudWatch. Thu thập metrics và logs: CloudWatch Agent gửi dữ liệu monitoring và log từ EC2 lên CloudWatch. Phát hiện tình trạng CPU cao: CloudWatch Alarm phát hiện khi CPU vượt ngưỡng 70%. Cảnh báo tự động: Amazon SNS gửi email khi Alarm chuyển sang trạng thái In alarm. Kiểm tra recovery: Alarm chuyển từ In alarm trở lại OK sau khi CPU giảm. Nâng cao kiến thức AWS: Hiểu được cách kết hợp IAM, VPC, EC2, CloudWatch và SNS để xây dựng một hệ thống monitoring thực tế. Tối ưu chi phí: Sử dụng tài nguyên ở mức phù hợp với môi trường thực hành và thực hiện cleanup sau khi hoàn thành. Mục tiêu cuối cùng của workshop là xây dựng và kiểm thử thành công quy trình:\nMonitoring → Detection → Alerting → Recovery\nqua đó chứng minh hệ thống có khả năng giám sát, phát hiện sự cố, gửi cảnh báo và xác nhận hệ thống phục hồi trên môi trường AWS.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.10-monitoring/5.10.2-check-logs/",
+	"title": "5.10.2 Kiểm tra Logs",
+	"tags": [],
+	"description": "",
+	"content": "Vào:\nCloudWatch → Log management → Log groups\nKiểm tra:\nmessages secure Mở Log Stream theo Instance ID và quan sát các log events.\nKết quả thực tế: log hệ thống xuất hiện trên CloudWatch Logs và có thể truy vấn gần thời gian thực.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.2-verify-alarm/",
+	"title": "5.11.2 Kiểm tra Alarm kích hoạt",
+	"tags": [],
+	"description": "",
+	"content": " Mở CloudWatch → Alarms. Chọn High-CPU-Alarm-Monitoring-Lab. Đợi khoảng 5–7 phút và refresh. Theo dõi Alarm chuyển từ OK sang In alarm. Kiểm tra CPUUtilization vượt ngưỡng 70%. Thực tế CPU đạt khoảng 87.2% và có thời điểm cao hơn.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.2-prerequisite/",
+	"title": "5.2 Chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "Yêu cầu Có tài khoản AWS. Có quyền truy cập các dịch vụ EC2, IAM, VPC, CloudWatch và SNS. Có máy Windows để kết nối SSH. Có PowerShell. Có key pair định dạng .pem. Thông tin lab Region: ap-southeast-2 (Sydney) Instance type: t3.micro AMI: Amazon Linux 2023 Key pair: monitoring-lab-key.pem Instance name: Monitoring-Lab-Instance Lưu ý Trong quá trình thực hiện cần theo dõi trạng thái EC2 và CloudWatch. Sau khi kiểm thử xong nên Stop EC2 để tránh phát sinh chi phí không cần thiết.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/",
+	"title": "5.3.2 Chuẩn bị tài khoản AWS",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra tài khoản Đăng nhập AWS Console. Kiểm tra quyền truy cập EC2, VPC, IAM, CloudWatch và SNS. Kiểm tra Region đang là ap-southeast-2. Chuẩn bị email để nhận cảnh báo SNS. Chuẩn bị máy Windows và PowerShell để kết nối SSH. Kết quả Tài khoản và môi trường AWS sẵn sàng để triển khai Workshop.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.2-create-public-subnet/",
+	"title": "5.4.2 Tạo Public Subnet",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Subnet Vào VPC Console → Subnets → Create subnet. Chọn Default VPC. Đặt Subnet name: public-subnet-monitoring. Availability Zone: ap-southeast-2a. IPv4 CIDR: 172.31.0.0/20. Bấm Create subnet. Chọn subnet vừa tạo → Actions → Edit subnet settings. Bật Enable auto-assign public IPv4 address. Lưu cấu hình. Kết quả Subnet public được tạo và có khả năng cấp Public IPv4 cho EC2.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.2-connect-ssh/",
+	"title": "5.6.2 Kết nối SSH",
+	"tags": [],
+	"description": "",
+	"content": "Kết nối bằng PowerShell Mở PowerShell trên Windows. Di chuyển tới thư mục chứa key: cd $HOME\\Downloads Cấp quyền cho key: icacls.exe .\\monitoring-lab-key.pem /reset icacls.exe .\\monitoring-lab-key.pem /grant:r \u0026#34;$($env:USERNAME):(R)\u0026#34; icacls.exe .\\monitoring-lab-key.pem /inheritance:r Kết nối: ssh -i \u0026#34;monitoring-lab-key.pem\u0026#34; ec2-user@\u0026lt;Public-IP-cua-instance\u0026gt; Gõ yes nếu được hỏi xác nhận fingerprint. Kết quả Kết nối SSH vào EC2 thành công.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/",
+	"title": "5.9.2 Cấu hình SNS",
+	"tags": [],
+	"description": "",
+	"content": "Tạo SNS Topic Ở Configure actions, Alarm state trigger: chọn In alarm. Chọn Create new topic. Topic name: system-alerts. Nhập email nhận cảnh báo. Bấm Create topic. Mở email từ AWS Notification. Bấm Confirm subscription. Đặt Alarm name: High-CPU-Alarm-Monitoring-Lab. Kiểm tra lại cấu hình và bấm Create alarm. Kết quả SNS Topic system-alerts có email subscription ở trạng thái đã xác nhận.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/4-c%C3%A1c-s%E1%BB%B1-ki%E1%BB%87n-%C4%91%C3%A3-tham-gia/4.2-event2/",
+	"title": "Event 2",
+	"tags": [],
+	"description": "",
+	"content": "Event 2 1. Tên sự kiện Event 2\n2. Thời gian và địa điểm Thời gian: Chưa cập nhật Địa điểm: Chưa cập nhật 3. Vai trò của bản thân Vai trò: Người tham dự\n4. Nội dung chính Chưa cập nhật.\n5. Bài học rút ra và đóng góp cá nhân Chưa cập nhật.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.2-blog-2/",
+	"title": "Kết nối Amazon S3 từ VPC bằng VPC Endpoint",
+	"tags": [],
+	"description": "",
+	"content": "1. Tổng quan Workload trong Amazon VPC thường cần đọc hoặc ghi dữ liệu vào Amazon S3. VPC Endpoint cung cấp điểm truy cập riêng từ VPC đến dịch vụ AWS được hỗ trợ.\nĐối với S3, hai lựa chọn quan trọng là Gateway VPC Endpoint và Interface VPC Endpoint.\n2. Gateway VPC Endpoint Gateway endpoint là lựa chọn phổ biến cho workload trong VPC truy cập S3 trong Region. Route table được cấu hình để traffic đến S3 sử dụng endpoint.\nMô hình này không cần Internet Gateway hoặc NAT Gateway chỉ để truy cập S3.\nƯu điểm:\nđơn giản; phù hợp với EC2 trong VPC; có thể dùng endpoint policy; thường có lợi thế về chi phí. 3. Interface VPC Endpoint Interface endpoint sử dụng AWS PrivateLink. AWS tạo Elastic Network Interface với private IP trong subnet được chọn.\nWorkload kết nối đến private IP của endpoint và traffic đi qua mạng AWS.\nMô hình này phù hợp với các yêu cầu private connectivity rộng hơn, bao gồm một số kiến trúc có on-premises và PrivateLink.\n4. So sánh Tiêu chí Gateway Endpoint Interface Endpoint Công nghệ Route table AWS PrivateLink S3 Có Có Thành phần Route table ENI/private IP Phù hợp Workload trong VPC PrivateLink/private connectivity Chi phí Thường tiết kiệm hơn Có phí endpoint và data processing 5. Security Private connectivity không đồng nghĩa với quyền truy cập không giới hạn. Nên kết hợp IAM policy, S3 bucket policy, endpoint policy và nguyên tắc least privilege. Với interface endpoint, security group cũng là thành phần quan trọng.\n6. Ví dụ EC2 private subnet → Route Table → S3 Gateway Endpoint → Amazon S3\nEC2 không cần public IP hoặc NAT Gateway chỉ để truy cập S3.\n7. Bài học rút ra VPC Endpoint là thành phần quan trọng trong thiết kế mạng AWS theo hướng private-by-design. Gateway endpoint thường phù hợp cho workload trong VPC truy cập S3, trong khi interface endpoint phục vụ các yêu cầu PrivateLink rộng hơn.\n8. Tài liệu tham khảo Choosing Your VPC Endpoint Strategy for Amazon S3 – AWS Architecture Blog\nReduce Cost and Increase Security with Amazon VPC Endpoints – AWS Architecture Blog\nIntroducing private DNS support for Amazon S3 with AWS PrivateLink – AWS Storage Blog\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/2-week2/",
+	"title": "Tuần 2: AWS Core Services - EC2, S3, IAM",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu Amazon EC2, Amazon S3 và IAM. Thực hành tạo EC2 instance và S3 bucket. Tìm hiểu User, Group, Role và Policy trong IAM. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 AWS Core Services - EC2, S3, IAM 01/08/2026 07/08/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 01/08/2026 07/08/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 01/08/2026 07/08/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 2 Hiểu chức năng của EC2, S3 và IAM. Thực hiện được các thao tác cơ bản với các dịch vụ trên. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/",
+	"title": "3-Các bài Blogs đã đăng",
+	"tags": [],
+	"description": "",
+	"content": "Trong thời gian thực tập, mình đã tìm hiểu và tổng hợp 3 bài blog kỹ thuật chuyên sâu về Amazon Web Services (AWS), tập trung vào các chủ đề giám sát hệ thống, kết nối mạng và kiến trúc serverless. Các bài viết giúp củng cố kiến thức thực tế về việc triển khai, bảo mật và vận hành workload trên AWS.\nSTT Đề tài Phạm trù Ngày đăng Blog 1 Giám sát Amazon EC2 với Amazon CloudWatch và thiết lập cảnh báo Monitoring \u0026amp; Operations Blog 2 Kết nối Amazon S3 từ VPC bằng VPC Endpoint Networking \u0026amp; Security Blog 3 Xây dựng kiến trúc hướng sự kiện với Amazon SQS và AWS Lambda Serverless \u0026amp; Event-Driven Architecture 3.1 Blog 1 – Giám sát Amazon EC2 với Amazon CloudWatch Amazon EC2 là một trong những dịch vụ compute phổ biến nhất trên AWS. Khi triển khai EC2 trong môi trường production, việc theo dõi tình trạng hoạt động của instance là rất quan trọng để phát hiện sớm các vấn đề về hiệu năng.\nBài blog trình bày cách sử dụng Amazon CloudWatch để thu thập và theo dõi các metric của EC2 như CPU Utilization, đồng thời xây dựng CloudWatch Alarm để tự động phát hiện khi CPU vượt quá ngưỡng được thiết lập.\nKiến trúc giám sát có thể được mô tả:\nAmazon EC2 → Amazon CloudWatch → CloudWatch Alarm → Notification\nThông qua CloudWatch, quản trị viên có thể theo dõi tình trạng hệ thống theo thời gian thực, xây dựng dashboard và thiết lập cảnh báo khi workload có dấu hiệu bất thường.\nBài viết cũng trình bày một kịch bản thực tế: tạo tải CPU trên EC2, quan sát metric trên CloudWatch, kiểm tra trạng thái Alarm chuyển sang In alarm, sau đó giảm tải và xác nhận Alarm quay trở lại trạng thái OK.\n3.2 Blog 2 – Kết nối Amazon S3 từ VPC bằng VPC Endpoint Workload chạy trong Amazon VPC thường cần truy cập Amazon S3 để lưu trữ hoặc lấy dữ liệu. Tuy nhiên, trong nhiều kiến trúc yêu cầu bảo mật cao, việc đưa traffic ra Internet không phải là lựa chọn tối ưu.\nAmazon VPC Endpoint cung cấp khả năng kết nối private giữa VPC và các dịch vụ AWS được hỗ trợ.\nBài blog tập trung vào hai mô hình chính:\nGateway VPC Endpoint Interface VPC Endpoint Với Gateway Endpoint, route table của VPC được cấu hình để traffic tới Amazon S3 đi qua endpoint thay vì phải sử dụng Internet Gateway hoặc NAT Gateway.\nMô hình:\nEC2 Private Subnet → Route Table → S3 Gateway Endpoint → Amazon S3\nGateway Endpoint có ưu điểm là cấu hình đơn giản, phù hợp với workload chạy trong VPC và có thể kết hợp với Endpoint Policy để kiểm soát quyền truy cập.\nBài viết cũng phân tích Interface Endpoint dựa trên AWS PrivateLink. Interface Endpoint sử dụng Elastic Network Interface với private IP trong subnet, cho phép workload kết nối tới dịch vụ thông qua mạng private.\nQua đó, bài blog giúp làm rõ cách lựa chọn VPC Endpoint phù hợp dựa trên yêu cầu về networking, security, connectivity và cost optimization.\n3.3 Blog 3 – Xây dựng kiến trúc hướng sự kiện với Amazon SQS và AWS Lambda Trong kiến trúc cloud hiện đại, mô hình event-driven architecture giúp các thành phần của hệ thống hoạt động độc lập và có khả năng mở rộng tốt hơn.\nBài blog trình bày cách kết hợp Amazon SQS và AWS Lambda để xây dựng một hệ thống xử lý công việc bất đồng bộ.\nMô hình tổng quát:\nApplication → Amazon SQS → AWS Lambda → Processing\nỨng dụng gửi message vào Amazon SQS thay vì trực tiếp gọi service xử lý. Lambda sau đó lấy message từ queue và thực hiện xử lý tự động.\nCách tiếp cận này mang lại nhiều lợi ích:\nGiảm sự phụ thuộc trực tiếp giữa các service. Có khả năng xử lý workload tăng đột biến. Lambda tự động mở rộng số lượng execution. Amazon SQS giúp lưu trữ message khi workload tăng cao. Có thể kiểm soát tốc độ xử lý thông qua cơ chế concurrency. Bài viết cũng tìm hiểu khả năng scaling và concurrency của AWS Lambda khi sử dụng Amazon SQS làm event source, qua đó cho thấy cách AWS cải thiện tốc độ polling và khả năng mở rộng Lambda trong các hệ thống event-driven.\nĐây là một pattern phù hợp cho các ứng dụng cần xử lý background jobs, asynchronous processing, queue-based workload và serverless architecture.\nTổng kết Ba bài blog tập trung vào ba khía cạnh quan trọng khi xây dựng hệ thống trên AWS:\nCloudWatch – giám sát và cảnh báo hệ thống. VPC Endpoint – xây dựng kết nối private và tăng cường bảo mật. SQS + Lambda – xây dựng kiến trúc serverless hướng sự kiện. Thông qua việc tìm hiểu và thực hành các nội dung trên, mình có thêm kiến thức thực tế về AWS Cloud, Networking, Monitoring, Security và Serverless Architecture.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.3-verify-sns/",
+	"title": "5.11.3 Kiểm tra SNS",
+	"tags": [],
+	"description": "",
+	"content": "Sau khi Alarm chuyển sang In alarm:\nMở hộp thư email đã đăng ký. Kiểm tra email cảnh báo từ AWS Notification. Xác nhận email có Alarm Details và Reason. Kiểm tra thời điểm Alarm chuyển trạng thái. Ví dụ nội dung cảnh báo thực tế:\nState Change: OK -\u0026gt; ALARM Reason: Threshold Crossed [100.0] was greater than the threshold (70.0) "
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/",
+	"title": "5.3 Chuẩn bị Project",
+	"tags": [],
+	"description": "",
+	"content": "Mục này chuẩn bị Region, tài khoản AWS và kiểm tra môi trường trước khi triển khai.\nCác thông tin sử dụng trong lab:\nRegion: ap-southeast-2 (Sydney) VPC: Default VPC Subnet: public-subnet-monitoring EC2: Monitoring-Lab-Instance IAM Role: EC2-CloudWatchAgent-Role "
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/",
+	"title": "5.3.3 Kiểm tra môi trường AWS",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra Kiểm tra Default VPC và tài nguyên mạng hiện có.\nTrong lab thực tế, Default VPC không còn subnet khả dụng nên cần tạo lại một subnet trước khi tạo EC2.\nThông tin subnet sử dụng:\nName: public-subnet-monitoring Availability Zone: ap-southeast-2a IPv4 CIDR: 172.31.0.0/20 Kết quả Môi trường mạng được kiểm tra và sẵn sàng cho bước tạo Subnet và EC2.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.3-configure-security-group/",
+	"title": "5.4.3 Cấu hình Security Group",
+	"tags": [],
+	"description": "",
+	"content": "Cấu hình Khi tạo EC2, tạo Security Group và cho phép:\nSSH Port: 22 Source: My IP Không mở SSH cho toàn bộ Internet nếu không cần thiết.\nKết quả Security Group cho phép kết nối SSH từ địa chỉ IP của máy thực hiện lab.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.3-verify-ec2/",
+	"title": "5.6.3 Kiểm tra EC2",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra:\nInstance state: Running Status check: đạt Public IPv4: có Security Group: cho phép SSH từ My IP IAM instance profile: EC2-CloudWatchAgent-Role Sau khi kiểm tra thành công, chuyển sang cài đặt CloudWatch Agent.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/3-week3/",
+	"title": "Tuần 3: AWS Networking - VPC, Subnet, Internet Gateway",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu VPC, Public Subnet, Private Subnet. Tìm hiểu Internet Gateway và Route Table. Thực hành tạo VPC và cấu hình mạng cơ bản. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 AWS Networking - VPC, Subnet, Internet Gateway 08/08/2026 14/08/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 08/08/2026 14/08/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 08/08/2026 14/08/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 3 Hiểu cấu trúc VPC và subnet. Cấu hình được Internet Gateway và Route Table ở mức cơ bản. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.3-blog-3/",
+	"title": "Xây dựng kiến trúc Event-Driven với Amazon SQS và AWS Lambda",
+	"tags": [],
+	"description": "",
+	"content": "1. Tổng quan Trong ứng dụng hiện đại, các thành phần không nhất thiết phải gọi trực tiếp nhau. Producer có thể đưa message vào Amazon SQS, sau đó consumer xử lý bất đồng bộ.\nKhi kết hợp SQS với AWS Lambda, hệ thống có thể mở rộng theo lượng message mà không cần quản lý server.\nLuồng cơ bản:\nApplication/Producer → Amazon SQS → Lambda Event Source Mapping → AWS Lambda\n2. Vai trò của SQS SQS hoạt động như một lớp đệm giữa producer và consumer. Khi traffic tăng đột biến, message được xếp hàng thay vì bắt consumer xử lý ngay.\nLợi ích:\ngiảm coupling; hấp thụ burst; xử lý bất đồng bộ; hỗ trợ retry; cho phép consumer mở rộng độc lập. 3. Lambda xử lý message Lambda có thể dùng Event Source Mapping để đọc message từ SQS. Lambda polling queue và gọi function để xử lý batch.\nDeveloper có thể tập trung vào business logic thay vì tự xây dựng polling infrastructure.\n4. Scaling và concurrency Khi số message tăng, Lambda có thể tăng số execution để xử lý nhanh hơn. Tuy nhiên scale quá nhanh có thể gây áp lực cho database hoặc API phía sau.\nAWS cung cấp maximum concurrency cho Lambda khi SQS là event source, giúp kiểm soát tốc độ xử lý và bảo vệ downstream.\n5. Retry và DLQ Message có thể thất bại do lỗi ứng dụng hoặc dependency. Sau số lần retry được cấu hình, message có thể chuyển sang Dead-Letter Queue.\nDLQ giúp cô lập message lỗi, tránh retry vô hạn và hỗ trợ điều tra hoặc xử lý lại.\n6. Ví dụ thực tế Hệ thống thương mại điện tử:\nNgười dùng đặt hàng. Application tạo message. Message vào SQS. Lambda nhận message. Lambda kiểm tra và xử lý đơn hàng. Nếu lỗi, message được retry. Nếu tiếp tục thất bại, message chuyển vào DLQ. 7. Bài học rút ra SQS cung cấp buffering và decoupling; Lambda cung cấp serverless processing và scaling. Khi thiết kế thực tế cần quan tâm idempotency, batch size, concurrency, downstream capacity và DLQ.\n8. Nguồn tham khảo AWS – Maximum concurrency với Lambda và SQS\nAWS – Faster polling scale-up cho Lambda và SQS\nAWS – Designing event-driven architectures\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/4-c%C3%A1c-s%E1%BB%B1-ki%E1%BB%87n-%C4%91%C3%A3-tham-gia/",
+	"title": "4. Các Events đã tham gia",
+	"tags": [],
+	"description": "",
+	"content": "Trong quá trình thực tập, em đã tham gia các sự kiện với mỗi sự kiện là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích. Bên cạnh đó, các sự kiện cũng giúp em có cơ hội giao lưu, kết nối với cộng đồng AWS và cập nhật thêm những xu hướng công nghệ mới.\nEvent 1 Tên sự kiện: AWS VIETNAM COMMUNITY MEETUP\nThời gian: Thứ Bảy, ngày 25-07-2026, 08:30 - 12:00\nĐịa điểm: Grand Terra, 36 Cát Linh, Ô Chợ Dừa, Hà Nội, Vietnam\nĐơn vị tổ chức: AWS Vietnam Community\nVai trò trong sự kiện: Người tham dự\nEvent 2 Tên sự kiện: Event 2\nThời gian: Chưa cập nhật\nĐịa điểm: Chưa cập nhật\nĐơn vị tổ chức: Chưa cập nhật\nVai trò trong sự kiện: Người tham dự\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.4-verify-recovery/",
+	"title": "5.11.4 Kiểm tra Alarm trở lại OK",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra Alarm trở lại trạng thái OK Sau khi lệnh stress kết thúc sau 300 giây:\nCPU giảm dần. Tiếp tục quan sát Alarm trên CloudWatch. Xác nhận trạng thái Alarm chuyển từ In alarm → OK. Kiểm tra biểu đồ CPU thể hiện quá trình tăng tải rồi giảm tải. Kết quả thực tế Alarm quay lại trạng thái OK, chứng minh cơ chế recovery hoạt động đúng.\nMinh chứng thực tế Hình 15. Alarm quay lại OK sau khi dừng tải\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/",
+	"title": "5.4 Networking",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu Chuẩn bị mạng public cho EC2 instance.\nLuồng mạng:\nEC2 → Public Subnet → Route 0.0.0.0/0 → Internet Gateway\nDefault VPC đã có Internet Gateway và route mặc định nên không cần tạo route thủ công.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/4-week4/",
+	"title": "Tuần 4: Security Group và định tuyến mạng",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu Security Group và kiểm soát traffic. Thực hành cấu hình rule SSH, HTTP/HTTPS. Kiểm tra kết nối EC2 và troubleshooting lỗi mạng cơ bản. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 Security Group và định tuyến mạng 15/08/2026 21/08/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 15/08/2026 21/08/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 15/08/2026 21/08/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 4 Hiểu cách Security Group kiểm soát lưu lượng. Biết kiểm tra và xử lý một số lỗi kết nối mạng. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/",
+	"title": "5. Workshop",
+	"tags": [],
+	"description": "",
+	"content": "Workshop AWS Monitoring Workshop này xây dựng và kiểm thử một hệ thống giám sát cơ bản cho một Amazon EC2 instance.\nLuồng giám sát:\nEC2 Instance → CloudWatch Agent → CloudWatch Logs / Metrics → CloudWatch Alarm → SNS → Email\nWorkshop bao gồm cấu hình IAM, mạng VPC/Subnet/Security Group, triển khai EC2, cài đặt CloudWatch Agent, thu thập log, giám sát CPU, tạo Alarm, gửi cảnh báo qua SNS, kiểm thử recovery và dọn dẹp tài nguyên.\nSơ đồ kiến trúc tổng thể Sơ đồ dưới đây mô tả kiến trúc AWS được triển khai thực tế trong workshop:\nLuồng hoạt động USER truy cập vào môi trường AWS thông qua Internet. Internet Gateway cung cấp kết nối Internet cho VPC. VPC sử dụng CIDR 10.0.0.0/16. Public Subnet sử dụng CIDR 10.0.1.0/24. EC2 được triển khai trong Public Subnet. Security Group kiểm soát lưu lượng truy cập đến EC2. IAM Role cung cấp quyền cần thiết cho EC2 gửi dữ liệu giám sát lên CloudWatch. CloudWatch Metrics nhận các metric, trong đó có CPU Utilization. CloudWatch Logs lưu trữ các log từ EC2. CloudWatch Alarm giám sát CPU và phát hiện khi CPU vượt ngưỡng. SNS nhận thông báo từ CloudWatch Alarm. Email nhận cảnh báo từ SNS. Môi trường triển khai thực tế Region: ap-southeast-2 (Sydney) EC2: Amazon Linux 2023, t3.micro Instance name: Monitoring-Lab-Instance IAM Role: EC2-CloudWatchAgent-Role Log Groups: messages, secure Alarm: High-CPU-Alarm-Monitoring-Lab SNS Topic: system-alerts Retention Log: 7 ngày Kết quả Toàn bộ kịch bản kiểm thử chính đã đạt:\nCloudWatch Agent hoạt động. Log xuất hiện trên CloudWatch Logs. CloudWatch Metrics nhận dữ liệu giám sát. Alarm chuyển trạng thái khi CPU vượt ngưỡng. SNS gửi email cảnh báo. Alarm quay lại OK sau khi dừng tải CPU. Hệ thống đáp ứng được mục tiêu của workshop là xây dựng một quy trình giám sát → phát hiện → cảnh báo → recovery cho Amazon EC2.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.5-iam/",
+	"title": "5.5 IAM",
+	"tags": [],
+	"description": "",
+	"content": "Tạo IAM Role cho EC2 Mục đích Cấp quyền cần thiết để CloudWatch Agent trên EC2 có thể gửi log và metric lên CloudWatch.\nThực hiện Vào IAM Console → Roles → Create role. Trusted entity type: AWS service. Use case: EC2. Bấm Next. Tìm CloudWatchAgentServerPolicy. Chọn đúng policy này. Đặt Role name: EC2-CloudWatchAgent-Role. Kiểm tra lại policy. Bấm Create role. Kết quả IAM Role EC2-CloudWatchAgent-Role được tạo và sẵn sàng gắn vào EC2.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/5-week5/",
+	"title": "Tuần 5: AWS Lambda và Serverless",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu AWS Lambda và mô hình Serverless. Tìm hiểu Function, Runtime, Event và Execution Role. Thực hành tạo và kiểm thử Lambda Function. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 AWS Lambda và Serverless 22/08/2026 28/08/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 22/08/2026 28/08/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 22/08/2026 28/08/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 5 Hiểu nguyên lý Serverless. Tạo và kiểm thử được Lambda Function cơ bản. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/",
+	"title": "5.6 EC2",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu Tạo EC2 instance Amazon Linux 2023 để làm máy chủ được giám sát.\nThông tin:\nName: Monitoring-Lab-Instance AMI: Amazon Linux 2023 Instance type: t3.micro Region: ap-southeast-2 IAM Role: EC2-CloudWatchAgent-Role "
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/6-t%E1%BB%B1-%C4%91%C3%A1nh-gi%C3%A1/",
+	"title": "6. Tự đánh giá",
+	"tags": [],
+	"description": "",
+	"content": "Tự đánh giá Trong thời gian từ ngày 25/07/2026 đến ngày 28/09/2026, tôi đã tham gia chương trình Workforce Bootcamp – First Cloud AI Journey do Amazon Web Services (AWS) Việt Nam tổ chức. Trong khuôn khổ chương trình, tôi có cơ hội học tập, rèn luyện và áp dụng các kiến thức được đào tạo tại Trường Đại học Xây dựng Hà Nội vào các nội dung thực hành về điện toán đám mây và hạ tầng AWS.\nTrong đợt tham gia chương trình này, tôi đã hoàn thành chuỗi bài học và thực hành lab về hạ tầng đám mây AWS, bao gồm các dịch vụ như Amazon EC2, Amazon S3, AWS IAM, Amazon VPC, Amazon RDS, AWS Lambda, Amazon CloudWatch, Auto Scaling, AWS CloudFormation, Docker/ECS và CI/CD. Thông qua quá trình học tập và thực hành, tôi đã củng cố kiến thức về điện toán đám mây, cấu hình hệ thống, quản lý tài nguyên và bảo mật trên AWS, đồng thời nâng cao kỹ năng tự học, nghiên cứu tài liệu, làm việc nhóm và viết báo cáo kỹ thuật.\nĐặc biệt, trong Workshop 5, tôi đã thực hiện các nội dung thực hành gồm: triển khai VPC và Subnet, cấu hình Security Group, thiết lập IAM Role, triển khai EC2, cài đặt và cấu hình CloudWatch Agent, thu thập CloudWatch Logs, thiết lập CloudWatch Alarm, cấu hình Amazon SNS để gửi thông báo, thực hiện kiểm thử hệ thống và cleanup các tài nguyên sau khi hoàn thành.\nThông qua các bài thực hành, tôi có cơ hội hiểu rõ hơn về cách xây dựng và quản lý một hệ thống cơ bản trên AWS, cũng như cách các thành phần Networking, Compute, Identity and Access Management, Monitoring và Notification phối hợp với nhau. Quá trình này cũng giúp tôi cải thiện khả năng troubleshooting, xử lý các lỗi cấu hình và chủ động tìm kiếm tài liệu để giải quyết các vấn đề phát sinh trong quá trình thực hành.\nĐánh giá mức độ hoàn thành STT Tiêu chí Mô tả Tốt Khá Trung bình 1 Kiến thức và kỹ năng chuyên môn Hiểu biết về AWS, kiến trúc hệ thống, mạng và các nội dung thực hành Cloud ☐ ✅ ☐ 2 Khả năng học hỏi Khả năng tiếp thu kiến thức mới về Cloud và các dịch vụ AWS ✅ ☐ ☐ 3 Chủ động Chủ động tìm hiểu tài liệu và thực hiện các bài tập, bài lab ☐ ✅ ☐ 4 Tinh thần trách nhiệm Hoàn thành các nhiệm vụ, bài thực hành và báo cáo đúng thời hạn ✅ ☐ ☐ 5 Kỷ luật Tuân thủ thời gian, nội quy và các yêu cầu của chương trình ✅ ☐ ☐ 6 Tính cầu tiến Tiếp nhận ý kiến đóng góp và chủ động cải thiện kiến thức, kỹ năng ✅ ☐ ☐ 7 Giao tiếp Khả năng trao đổi và trình bày các vấn đề kỹ thuật ☐ ✅ ☐ 8 Hợp tác nhóm Phối hợp, chia sẻ kiến thức và hỗ trợ các thành viên trong quá trình học tập ✅ ☐ ☐ 9 Ứng xử chuyên nghiệp Thái độ nghiêm túc, tôn trọng người hướng dẫn và các thành viên tham gia ✅ ☐ ☐ 10 Tư duy giải quyết vấn đề Khả năng xác định và khắc phục lỗi trong quá trình thực hành ☐ ✅ ☐ 11 Hoàn thành Workshop Hoàn thành các nội dung VPC, IAM, EC2, CloudWatch, SNS, kiểm thử và cleanup ☐ ✅ ☐ 12 Tổng thể Đánh giá chung về kết quả học tập và rèn luyện trong chương trình ☐ ✅ ☐ Định hướng cải thiện bản thân Kiến thức chuyên môn: Tiếp tục củng cố kiến thức về AWS, Cloud Computing, Networking và Security, đặc biệt là khả năng thiết kế và triển khai các hệ thống thực tế trên môi trường đám mây.\nKỹ năng thực hành: Tăng cường thực hành các dịch vụ AWS và xây dựng thêm các bài lab thực tế để nâng cao khả năng triển khai, cấu hình và quản lý hệ thống.\nKỹ năng Troubleshooting: Rèn luyện khả năng phân tích logs, kiểm tra cấu hình và xác định nguyên nhân gốc rễ của sự cố trước khi tìm kiếm sự hỗ trợ.\nKỹ năng giao tiếp và thuyết trình: Cải thiện khả năng trình bày các nội dung kỹ thuật theo hướng ngắn gọn, rõ ràng, mạch lạc và dễ hiểu.\nKỹ năng tự học: Chủ động nghiên cứu tài liệu kỹ thuật, đặc biệt là tài liệu AWS, đồng thời cập nhật các công nghệ mới liên quan đến Cloud, Networking và Security.\nĐịnh hướng phát triển: Tiếp tục áp dụng những kiến thức và kỹ năng đã học được từ chương trình Workforce Bootcamp – First Cloud AI Journey vào quá trình học tập, các bài tập và dự án cá nhân tại Trường Đại học Xây dựng Hà Nội, từ đó từng bước nâng cao năng lực chuyên môn và chuẩn bị tốt hơn cho công việc sau khi tốt nghiệp.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/6-week6/",
+	"title": "Tuần 6: Amazon RDS, DynamoDB và quản lý dữ liệu",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu Amazon RDS và DynamoDB. So sánh cơ sở dữ liệu quan hệ và NoSQL. Thực hành các nội dung cơ bản về quản lý dữ liệu trên AWS. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 Amazon RDS, DynamoDB và quản lý dữ liệu 29/08/2026 04/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 29/08/2026 04/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 29/08/2026 04/09/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 6 Phân biệt được RDS và DynamoDB. Hiểu các thành phần cơ bản khi triển khai dữ liệu trên AWS. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.7-cloudwatch-agent/",
+	"title": "5.7 CloudWatch Agent",
+	"tags": [],
+	"description": "",
+	"content": "Cài đặt Agent Cài đặt:\nsudo yum install amazon-cloudwatch-agent -y Kiểm tra:\nrpm -q amazon-cloudwatch-agent Chạy config wizard:\nsudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard Cấu hình:\nOS: Linux Environment: EC2 User: cwagent Tắt StatsD Bật host metrics CPU/Memory/Disk Thu thập /var/log/messages Thu thập /var/log/secure Retention: 7 ngày Không lưu config vào SSM Nếu wizard tạo khối collectd trong khi CollectD chưa được cài, mở file config và xóa khối này.\nsudo nano /opt/aws/amazon-cloudwatch-agent/bin/config.json Khởi động Agent:\nsudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json Kiểm tra:\nsudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status Kỳ vọng: status = running.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/7-chia-s%E1%BA%BB-v%C3%A0-%C4%91%C3%B3ng-g%C3%B3p-%C3%BD-ki%E1%BA%BFn/",
+	"title": "7. Chia sẻ và đóng góp ý kiến",
+	"tags": [],
+	"description": "",
+	"content": "Trong quá trình tham gia chương trình First Cloud AI Journey, tôi có cơ hội được tìm hiểu và thực hành nhiều kiến thức liên quan đến Cloud Computing, Networking và Cloud Security. Thông qua các bài thực hành và quá trình thực hiện dự án, tôi hiểu rõ hơn cách kiến thức về mạng và bảo mật được áp dụng trong môi trường Cloud thực tế.\n1. Đánh giá chung về chương trình 1.1. Kiến thức về Networking và Cloud Điều tôi thấy hữu ích nhất trong chương trình là được thực hành trực tiếp các kiến thức về mạng trên môi trường AWS.\nThông qua việc tìm hiểu và cấu hình các thành phần như VPC, Subnet, Route Table, Internet Gateway, Security Group và Network ACL, tôi hiểu rõ hơn cách xây dựng, phân chia và kiểm soát một hệ thống mạng trên Cloud.\nTrước đây, tôi chủ yếu tiếp cận các kiến thức mạng thông qua lý thuyết. Khi thực hành trực tiếp trên AWS, tôi có thể hiểu rõ hơn mối quan hệ giữa các thành phần mạng và cách dữ liệu được phép hoặc bị giới hạn khi di chuyển giữa các tài nguyên.\n1.2. Áp dụng kiến thức vào dự án Trong quá trình thực hiện dự án của mình, tôi tập trung vào vấn đề bảo vệ dữ liệu và mã hóa, cụ thể là thực hiện mã hóa có chọn lọc các thành phần quan trọng của ảnh JPEG.\nMục tiêu của dự án là giảm thời gian xử lý bằng cách chỉ mã hóa những thành phần cần thiết, nhưng vẫn đảm bảo ảnh sau khi mã hóa không thể được sử dụng hoặc quan sát một cách bình thường nếu không có khóa giải mã.\nQua quá trình học Cloud và Networking, tôi nhận thấy việc bảo vệ dữ liệu không chỉ phụ thuộc vào thuật toán mã hóa mà còn liên quan đến cách dữ liệu được lưu trữ, truyền tải và kiểm soát quyền truy cập.\nNhững kiến thức này giúp tôi có thêm góc nhìn để phát triển dự án theo hướng an toàn hơn khi triển khai trên môi trường Cloud.\n1.3. Kiến thức về bảo mật mạng Các nội dung về Security Group, Network ACL và IAM giúp tôi hiểu rõ hơn về cách kiểm soát quyền truy cập vào tài nguyên AWS.\nĐặc biệt, việc chỉ cho phép những kết nối cần thiết giúp tôi hiểu rõ hơn về nguyên tắc Least Privilege và Network Isolation.\nĐây là những kiến thức tôi muốn tiếp tục tìm hiểu vì chúng có thể được áp dụng vào việc xây dựng các hệ thống Cloud có khả năng bảo vệ dữ liệu và hạn chế các truy cập không cần thiết.\n1.4. Kỹ năng xử lý sự cố Trong quá trình thực hiện các bài Lab, tôi gặp một số lỗi liên quan đến cấu hình mạng, quyền truy cập và kết nối giữa các tài nguyên.\nViệc kiểm tra Route Table, Security Group, Network ACL và log giúp tôi hình thành cách tiếp cận vấn đề theo từng bước thay vì thay đổi cấu hình một cách ngẫu nhiên.\nQua đó, tôi cải thiện được khả năng phân tích nguyên nhân và xử lý các vấn đề liên quan đến hệ thống mạng trên AWS.\n2. Điều tôi hài lòng nhất Điều tôi hài lòng nhất trong chương trình là được thực hành trực tiếp trên môi trường AWS thay vì chỉ học lý thuyết.\nViệc tự tạo tài nguyên, cấu hình mạng, kiểm tra kết nối và theo dõi hoạt động của hệ thống giúp tôi hiểu rõ hơn các kiến thức đã học.\nĐặc biệt, các kiến thức về Networking và Cloud Security giúp tôi có thêm nền tảng để tiếp tục phát triển dự án của mình theo hướng kết hợp giữa bảo vệ dữ liệu và bảo mật hạ tầng Cloud.\n3. Những điểm chương trình có thể cải thiện Theo tôi, chương trình có thể bổ sung thêm một số bài Lab thực tế chuyên sâu hơn về AWS Networking và Cloud Security.\nVí dụ, có thể xây dựng một bài Lab hoàn chỉnh theo quy trình:\nVPC → Public/Private Subnet → Route Table → Security Group → Network ACL → Kiểm tra kết nối → Theo dõi Log\nSau đó đưa ra một số tình huống lỗi để thực tập sinh tự tìm nguyên nhân và khắc phục.\nNgoài ra, nếu có thêm các bài thực hành liên quan đến bảo vệ dữ liệu trong quá trình truyền tải và lưu trữ trên Cloud, tôi nghĩ đây sẽ là nội dung rất hữu ích đối với những người đang định hướng về Network Security và Cloud Security.\n4. Đề xuất và mong muốn Tôi đề xuất chương trình có thể tổ chức thêm các buổi Deep Dive về Networking và Cloud Security, tập trung vào những tình huống thực tế như:\nThiết kế hệ thống mạng Public/Private trên AWS. Phân chia và cô lập mạng bằng VPC và Subnet. Kiểm soát traffic bằng Security Group và Network ACL. Phân tích và xử lý các lỗi kết nối mạng. Giám sát hệ thống và network bằng CloudWatch. Bảo vệ dữ liệu trong quá trình truyền tải và lưu trữ. Kết hợp bảo mật dữ liệu với bảo mật hạ tầng Cloud. Trong thời gian tới, tôi mong muốn tiếp tục tìm hiểu sâu hơn về AWS Networking, Cloud Security và bảo vệ dữ liệu, đồng thời áp dụng những kiến thức đã học vào dự án của mình để xây dựng một hệ thống có tính thực tế và an toàn hơn.\n5. Lời cảm ơn Tôi xin cảm ơn Ban tổ chức, các Mentor và mọi người trong chương trình First Cloud AI Journey đã hỗ trợ tôi trong suốt quá trình thực tập.\nChương trình giúp tôi có thêm nhiều kiến thức thực tế về Cloud Computing, Networking và Security, đồng thời giúp tôi hiểu rõ hơn cách kết hợp kiến thức về mạng, bảo mật và bảo vệ dữ liệu trong một hệ thống Cloud.\nĐây là những kiến thức và kinh nghiệm hữu ích mà tôi có thể tiếp tục áp dụng vào các dự án cá nhân và quá trình học tập của mình trong thời gian tới.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/7-week7/",
+	"title": "Tuần 7: CloudWatch, Logs và CloudTrail",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu CloudWatch, CloudWatch Agent và CloudWatch Logs. Tìm hiểu CloudWatch Alarm và SNS. Tìm hiểu CloudTrail và thực hành theo dõi hoạt động hệ thống. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 CloudWatch, Logs và CloudTrail 05/09/2026 11/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 05/09/2026 11/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 05/09/2026 11/09/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 7 Theo dõi được metric và log của tài nguyên. Hiểu cách tạo Alarm và kiểm tra hoạt động AWS bằng CloudTrail. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.8-cloudwatch-logs/",
+	"title": "5.8 CloudWatch Logs",
+	"tags": [],
+	"description": "",
+	"content": "Khắc phục Log Group không xuất hiện Nếu Agent đang chạy nhưng Log Group chưa xuất hiện:\nKiểm tra log Agent: sudo tail -n 30 /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log Kiểm tra: sudo tail -n 20 /var/log/messages Trên Amazon Linux 2023, rsyslog không được cài sẵn nên các file /var/log/messages và /var/log/secure có thể chưa tồn tại.\nCài và bật rsyslog: sudo yum install rsyslog -y sudo systemctl enable rsyslog sudo systemctl start rsyslog Cấp quyền đọc cho Agent: sudo usermod -a -G adm cwagent sudo chmod 640 /var/log/messages /var/log/secure sudo chgrp adm /var/log/messages /var/log/secure Khởi động lại Agent: sudo systemctl restart amazon-cloudwatch-agent Xác nhận log Vào CloudWatch Console → Log management → Log groups.\nKiểm tra các Log Group:\nmessages secure Chọn Log Stream theo Instance ID để xem log gần thời gian thực.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/8-week8/",
+	"title": "Tuần 8: ELB và Auto Scaling",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu Elastic Load Balancer. Tìm hiểu Application Load Balancer và Auto Scaling Group. Thực hành mô hình nhiều EC2 phía sau Load Balancer. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 ELB và Auto Scaling 12/09/2026 18/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 12/09/2026 18/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 12/09/2026 18/09/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 8 Hiểu vai trò của Load Balancer. Hiểu cơ chế Auto Scaling và khả năng mở rộng hệ thống. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/",
+	"title": "5.9 CloudWatch Alarm",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Alarm Vào CloudWatch → Alarms → Create alarm → Select metric. Chọn EC2 → Per-Instance Metrics. Tìm Instance ID của Monitoring-Lab-Instance. Chọn metric CPUUtilization. Statistic: Average. Period: 5 minutes. Threshold type: Static. Condition: Greater than 70. Bấm Next. Kết quả Alarm được cấu hình để phát hiện CPU vượt 70% trong khoảng thời gian theo cấu hình.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/9-week9/",
+	"title": "Tuần 9: Docker và Amazon ECS",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tìm hiểu Docker Image, Container và Dockerfile. Tìm hiểu Amazon ECS. Thực hành các bước cơ bản để triển khai container trên AWS. Làm quen với quy trình CI/CD. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 Docker và Amazon ECS 19/09/2026 25/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 19/09/2026 25/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 19/09/2026 25/09/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 9 Nắm được kiến thức cơ bản về Docker và ECS. Hiểu quy trình triển khai ứng dụng container. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.10-monitoring/",
+	"title": "5.10 Monitoring",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra hệ thống Monitoring Hệ thống được theo dõi theo chuỗi:\nEC2 → CloudWatch Agent → Logs / Metrics → Alarm → SNS → Email\nCác thành phần cần kiểm tra:\nCloudWatch Agent: running Log Groups: messages, secure Metric: CPUUtilization Alarm: High-CPU-Alarm-Monitoring-Lab SNS Topic: system-alerts Mục tiêu là xác nhận dữ liệu từ EC2 được thu thập và Alarm có thể phản ứng khi CPU tăng cao.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/10-week10/",
+	"title": "Tuần 10: Dự án tổng hợp, kiểm thử và Cleanup",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu học tập / Công việc dự kiến Tổng hợp kiến thức để thực hiện Workshop trên AWS. Hoàn thiện VPC, Subnet, Security Group, IAM Role, EC2 và CloudWatch. Thiết lập CloudWatch Alarm và SNS. Kiểm thử end-to-end, troubleshooting và cleanup tài nguyên. Các công việc cần triển khai trong tuần này Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 1 Dự án tổng hợp, kiểm thử và Cleanup 26/09/2026 28/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Thực hành các bài học và lab liên quan 26/09/2026 28/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Tổng hợp kiến thức, kiểm tra kết quả và ghi nhận minh chứng 26/09/2026 28/09/2026 https://cloudjourney.awsstudygroup.com/ Kết quả đạt được tuần 10 Hoàn thành nội dung Workshop tổng hợp. Kiểm thử được luồng metric → Alarm → SNS. Hoàn thành cleanup tài nguyên sau thực hành. Trạng thái: Hoàn thành\nHình thức minh chứng Ảnh chụp màn hình AWS Management Console. Kết quả thực hành/lab. Cấu hình tài nguyên và kết quả kiểm thử. Worklog và báo cáo thực tập. Nguồn tài liệu: https://cloudjourney.awsstudygroup.com/\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/",
+	"title": "5.11 Testing",
+	"tags": [],
+	"description": "",
+	"content": "Mục tiêu kiểm thử Kiểm thử end-to-end:\nTạo tải CPU → CloudWatch nhận metric → Alarm chuyển In alarm → SNS gửi email → CPU giảm → Alarm trở lại OK\nBảng kết quả kiểm thử Kịch bản Kết quả mong đợi Kết quả thực tế Đánh giá Cài CloudWatch Agent Cài thành công Version 1.300069.1 cài thành công Đạt Cấu hình Agent Có config hợp lệ Config hoạt động sau khi xử lý collectd Đạt Gửi log Log Group xuất hiện messages, secure xuất hiện Đạt Chạy stress CPU vượt 70% CPU đạt khoảng 87–100% Đạt Alarm OK → In alarm Alarm chuyển trạng thái Đạt SNS Có email cảnh báo Email nhận đầy đủ Details/Reason Đạt Dừng tải CPU giảm CPU giảm về bình thường Đạt Recovery In alarm → OK Alarm quay lại OK Đạt Kết luận Toàn bộ kịch bản kiểm thử chính đều đạt, chứng minh luồng monitoring và cảnh báo hoạt động end-to-end.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.12-cleanup-resources/",
+	"title": "5.12 Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "Dừng EC2 Sau khi hoàn thành kiểm thử:\nVào EC2 Console → Instances. Chọn Monitoring-Lab-Instance. Chọn Instance state → Stop instance. Xác nhận Stop. Không cần chọn Skip OS shutdown. Trong lab này, VPC, Subnet, Security Group, IAM Role, Alarm và SNS Topic được giữ lại để sử dụng cho các lần học tiếp theo.\n![Hình 16. Xác nhận Stop EC2 instance để tránh phát sinh chi phí]16\nKết quả EC2 được Stop sau khi hoàn thành kiểm thử, giúp hạn chế chi phí phát sinh.\n"
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": "Báo cáo thực tập Thông tin sinh viên: Họ và tên: Phạm Quang Thiện\nSố điện thoại: 0339631775\nEmail: quangthienpham35@gmail.com\nTrường: Trường Đại học Xây dựng Hà Nội\nNgành: Kỹ thuật Hệ thống và Mạng máy Tính\nLớp: 67MHT\nBộ phận làm việc: Cloud Computing\nCông ty thực tập: Công ty TNHH Amazon Web Services Viet Nam\nVị trí thực tập: Workforce Bootcamp - First Cloud AI Journey\nThời gian thực tập: Từ ngày 25-05-2026 đến ngày 29-09-2026\nNhật ký công việc Bản đề xuất Các bài blogs đã đăng Các sự kiện đã tham gia Workshop Tự đánh giá Chia sẻ và đóng góp ý kiến "
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
