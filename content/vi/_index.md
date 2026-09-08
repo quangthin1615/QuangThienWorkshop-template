@@ -22,7 +22,7 @@
 
 **Thời gian thực tập:** Từ ngày 25-05-2026 đến ngày 29-09-2026
 
-![Ảnh đại diện của Phạm Quang Thiện](/QuangThienWorkshop-template/images/a.jpg)
+![Ảnh đại diện của Phạm Quang Thiện](/QuangThienWorkshop-template/images/a.png)
 
 1. [Nhật ký công việc](1-Nhật%20ký%20công%20việc/)
 2. [Bản đề xuất](2-Bản%20đề%20xuất/)

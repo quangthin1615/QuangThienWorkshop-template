@@ -1,412 +1,412 @@
 [
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/",
 	"title": "1.Worklog",
 	"tags": [],
 	"description": "",
 	"content": "This section presents my detailed 10-week worklog during the Workforce Bootcamp - First Cloud AI Journey, organized by Amazon Web Services Vietnam Co., Ltd. (AWS Vietnam), from 25/07/2026 to 28/09/2026.\nWeek 1: AWS and Cloud Computing Overview Week 2: AWS Core Services - EC2, S3, and IAM Week 3: AWS Networking - VPC, Subnet, and Internet Gateway Week 4: Security Groups and Network Routing Week 5: AWS Lambda and Serverless Week 6: Amazon RDS, DynamoDB, and Data Management Week 7: CloudWatch, Logs, and CloudTrail Week 8: Elastic Load Balancer and Auto Scaling Week 9: Docker and Amazon ECS Week 10: Integrated Project, Testing, and Cleanup "
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.1-workshop-overview/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.1-workshop-overview/",
 	"title": "5.1 Workshop Overview",
 	"tags": [],
 	"description": "",
 	"content": "Objective The objective of this workshop is to build and verify a practical AWS monitoring system for an EC2 instance.\nThe system collects system logs and performance metrics, monitors CPU utilization, detects high CPU usage through a CloudWatch Alarm, and sends an email notification through Amazon SNS.\nMonitoring Architecture EC2 → CloudWatch Agent → CloudWatch Logs / Metrics → CloudWatch Alarm → SNS → Email\nAWS Services Used Amazon EC2: provides the monitored Linux server. AWS IAM: provides permissions for the CloudWatch Agent. Amazon VPC: provides the network environment. Amazon CloudWatch: collects logs and metrics and evaluates alarms. Amazon SNS: sends email notifications when the alarm changes state. Expected Result Collect system logs from EC2. Publish CPU metrics to CloudWatch. Detect CPU utilization above 70%. Change the alarm from OK to In alarm. Send an SNS email notification. Return the alarm from In alarm to OK after CPU usage decreases. "
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.1-monitor-cpu/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.1-monitor-cpu/",
 	"title": "5.10.1 Monitor CPU",
 	"tags": [],
 	"description": "",
 	"content": "Observe CPU Utilization Open CloudWatch → Alarms → High-CPU-Alarm-Monitoring-Lab.\nUnder normal conditions, the alarm remains OK. When CPU utilization stays above the configured threshold, the alarm changes to In alarm.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.1-generate-cpu-load/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.1-generate-cpu-load/",
 	"title": "5.11.1 Creating CPU Load",
 	"tags": [],
 	"description": "",
 	"content": "In the SSH terminal, install the stress tool:\nsudo yum install stress -y Run CPU load for 5 minutes:\nstress --cpu 2 --timeout 300 During the test, CPU utilization increases significantly, creating the conditions for the Alarm to be triggered.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/",
 	"title": "5.3.1 Select AWS Region",
 	"tags": [],
 	"description": "",
 	"content": "Select the AWS Region Sign in to the AWS Management Console. Open the Region selector. Select Asia Pacific (Sydney) — ap-southeast-2. Verify the selected Region before creating resources. Result All resources used in this workshop are created in the Sydney Region.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/",
 	"title": "5.4.1 Create / Verify VPC",
 	"tags": [],
 	"description": "",
 	"content": "Verify the VPC Open VPC Console. Select Your VPCs. Verify the Default VPC in ap-southeast-2. Result The Default VPC is used as the network environment for the monitoring lab.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.5-iam/5.5.1-create-cloudwatch-agent-role/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.5-iam/5.5.1-create-cloudwatch-agent-role/",
 	"title": "5.5.1 Create CloudWatch Agent Role",
 	"tags": [],
 	"description": "",
 	"content": "Create the IAM Role Open IAM Console → Roles. Select Create role. Trusted entity type: AWS service. Use case: EC2. Add CloudWatchAgentServerPolicy. Role name: EC2-CloudWatchAgent-Role. Review and create the role. Result The IAM role is created and can be attached to the EC2 instance.\nFigure 1. IAM Role EC2-CloudWatchAgent-Role created successfully.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.1-launch-ec2/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.1-launch-ec2/",
 	"title": "5.6.1 Launch EC2",
 	"tags": [],
 	"description": "",
 	"content": "Launch the EC2 Instance Open EC2 → Instances → Launch instance. Name the instance Monitoring-Lab-Instance. Select Amazon Linux 2023. Select t3.micro. Create key pair monitoring-lab-key.pem. Select the Default VPC and public-subnet-monitoring. Enable auto-assign public IPv4. Allow SSH from My IP. Select EC2-CloudWatchAgent-Role as the IAM instance profile. Launch the instance. Result The EC2 instance changes to Running and passes the status checks.\nFigure 2. EC2 instance launched successfully.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.1-install-agent/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.1-install-agent/",
 	"title": "5.7.1 Install CloudWatch Agent",
 	"tags": [],
 	"description": "",
 	"content": "Install the Agent sudo yum install amazon-cloudwatch-agent -y Verify:\nrpm -q amazon-cloudwatch-agent Result The CloudWatch Agent is installed successfully.\nFigure 5. CloudWatch Agent installation completed.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/",
 	"title": "5.9.1 Create CPU Alarm",
 	"tags": [],
 	"description": "",
 	"content": "Create the Alarm Open CloudWatch → Alarms → Create alarm. Select Select metric. Choose EC2 → Per-Instance Metrics. Find the monitoring instance. Select CPUUtilization. Statistic: Average. Period: 5 minutes. Condition: Greater than 70. Continue to configure the alarm actions. Figure 10. CPU alarm configured with a threshold above 70%.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/",
 	"title": "Event 1: AWS VIETNAM COMMUNITY MEETUP",
 	"tags": [],
 	"description": "",
 	"content": "1. Event Name AWS VIETNAM COMMUNITY MEETUP\nThe event provides participants with an opportunity to connect with the community and update their knowledge of AWS, AI, and AI Agents.\n2. Time and Location Time: Saturday, July 25, 2026, 08:30 - 12:00. Location: Grand Terra. Address: 36 Cat Linh, O Cho Dua, Hanoi, Vietnam. 3. My Role Role: Participant.\nI participated in check-in, networking, followed the sharing sessions, interacted with the community, took a group photo, and participated in the Kahoot Quiz \u0026amp; Lucky Draw.\n4. Main Content of the Event 4.1. Check-in \u0026amp; Networking Time: 08:30 - 09:00\nParticipants checked in, got to know each other, and interacted with community members before the program started.\nLesson Learned: Networking helps expand relationships and creates opportunities to exchange knowledge with people who share an interest in technology.\n4.2. Community Introduction Time: 09:00 - 09:20\nSpeakers: Anh Ho \u0026amp; Phong Pham\nThis session introduced community activities and provided an environment for members to interact, share knowledge, and connect with each other.\nLesson Learned: The technology community is a useful environment for learning from experience and keeping up with new trends.\n4.3. OpenClaw – The Rise and Practice of Open-Source AI Agents Time: 09:20 - 09:50\nSpeaker: Tuan Vu\nThe session introduced OpenClaw and the development of open-source AI Agents, from architecture and how Agents use tools/skills to practical applications.\nThe presentation also discussed risks such as Skill Injection, Prompt Injection and Privilege Escalation, while emphasizing principles such as Least Privilege, Execution Isolation and Human-in-the-loop.\nLesson Learned: AI Agents can perform many tasks but need to have access permissions and security controlled from the design stage.\n4.4. From AI Trends to Business Value Time: 09:50 - 10:20\nSpeakers: Nguyen Thu \u0026amp; Nam La\nThe presentation focused on transforming AI trends into practical value for businesses, especially in business operations and Sales.\nLesson Learned: When applying AI, it is necessary to consider not only the technology but also the practical value that AI can create for businesses.\n4.5. Tea Break, Group Photo \u0026amp; Networking Time: 10:20 - 10:40\nParticipants took a break, took a group photo, and continued interacting and exchanging ideas with community members.\nLesson Learned: Networking activities help strengthen connections and create opportunities to further discuss the knowledge shared during the event.\n4.6. Ship Fast with AI, Not by Time: 10:40 - 11:10\nSpeaker: Henry (Duc) Bui\nThe session focused on using AI to accelerate the write → run → debug process, while developers still need to control architecture, design, interfaces, and security.\nThe presentation emphasized standardizing knowledge into lint rules, CI checks, skills and documentation for reuse.\nLesson Learned: AI helps increase productivity, but developers still play an important role in design, testing, and ensuring software quality.\n4.7. Selecting the Right AI Agent Pattern on AWS Time: 11:10 - 11:40\nSpeaker: Dzung Luong\nThe presentation introduced how to select suitable patterns when building AI Agent systems on AWS and the factors that need to be considered during deployment.\nLesson Learned: When building AI Agents on AWS, it is necessary to choose an appropriate architecture and pay attention to permission, security, isolation, and system observability.\n4.8. Kahoot Quiz \u0026amp; Lucky Draw Time: 11:40 - 12:00\nThe program ended with a Kahoot Quiz and Lucky Draw, allowing participants to interact and review the content that had been shared.\nLesson Learned: Interactive activities help reinforce knowledge and create a connected atmosphere among members.\n5. Lessons Learned After participating in the event, I gained several lessons:\nGained a better understanding of AI Agents and how Agents use tools/skills to perform tasks. Recognized that security and access permissions are important factors when building Agents. Understood the role of the Least Privilege principle in access control. AI can help accelerate software development, but developers still play an important role in controlling architecture, design, and quality. Knowledge and experience should be standardized into documents, rules, or tools so they can be reused. 6. Personal Contribution I fully participated in the program, actively followed the sharing sessions, recorded knowledge about AWS, AI, and AI Agents, and participated in networking and interactive activities throughout the event.\n7. Evidence Image Group photo with the speakers and community members at the AWS VIETNAM COMMUNITY MEETUP event.\n8. Conclusion AWS VIETNAM COMMUNITY MEETUP was a valuable experience during my internship, helping me gain practical knowledge about AWS, AI, and AI Agents.\nIn addition to technical knowledge, the event helped me recognize the important role of the technology community in sharing knowledge, exchanging experiences, and connecting people who are interested in AWS and new technologies.\nThrough networking and interacting with the community, I had more opportunities to learn from people with practical experience and better understand how technologies such as AI Agents and AWS are being applied in practice.\nThrough this event, I gained more motivation to continue learning and researching AWS and AI, as well as actively participating in community activities in the future.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.1-blog-1/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.1-blog-1/",
 	"title": "Monitoring Amazon EC2 with Amazon CloudWatch and Automated Alarms",
 	"tags": [],
 	"description": "",
 	"content": "1. Overview Running an Amazon EC2 instance does not automatically mean that the application is healthy. CPU utilization can spike, network traffic can become abnormal, or resources can approach capacity limits.\nAmazon CloudWatch provides metric collection, visualization, dashboards, and CloudWatch Alarms. Common EC2 metrics include CPUUtilization, NetworkIn, NetworkOut, DiskReadOps, and DiskWriteOps.\n2. Architecture The basic flow is:\nAmazon EC2 → CloudWatch Metrics → CloudWatch Dashboard/Alarm → notification or operational action\nEC2 produces metrics and CloudWatch stores them for monitoring. An alarm evaluates the configured condition and changes state when the condition is met.\n3. Monitoring CPU CPUUtilization is a useful starting metric. Sustained CPU utilization above 80% may indicate increased workload or an application issue.\nCharts help identify normal levels, traffic spikes, abnormal behavior, and long-term trends. Thresholds should be based on the actual workload.\n4. CloudWatch Alarm A simple alarm can use:\nMetric: EC2 CPUUtilization Statistic: Average Period: 5 minutes Threshold: greater than 80% Action: send an SNS notification When the condition is met, the alarm enters ALARM. When the metric returns to a safe range, it can return to OK.\n5. Practical example A web server normally runs at 20–40% CPU. During a traffic spike, CPU rises above 80%.\nWorkflow:\nEC2 produces high CPU utilization. CloudWatch records the metric. The alarm evaluates the condition. The alarm enters ALARM. SNS can notify the administrator. The administrator checks the application and logs. When load decreases, the alarm returns to OK. 6. Key takeaway Monitoring is not only about viewing graphs. The value comes from turning metrics into actionable information through monitor → detect → alert → respond.\n7. References AWS News Blog – Amazon CloudWatch – Alarm Actions\nAWS Compute Blog – Automating Amazon EC2-Windows EBS Volumes monitoring and creating alarms\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/1-week1/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/1-week1/",
 	"title": "Week 1: AWS and Cloud Computing Overview",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn the basic concepts of Cloud Computing and AWS. Learn about AWS Regions, Availability Zones, and the general AWS architecture. Get familiar with the AWS Management Console and the practice environment. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn the basic concepts of Cloud Computing and AWS. 25/07/2026 31/07/2026 https://cloudjourney.awsstudygroup.com/ 2 Learn about AWS Regions, Availability Zones, and the general AWS architecture. 25/07/2026 31/07/2026 https://cloudjourney.awsstudygroup.com/ 3 Get familiar with the AWS Management Console and the practice environment. 25/07/2026 31/07/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 1 Understand the basic concepts of Cloud Computing and AWS. Become familiar with the AWS Management Console and the lab environment. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/2-proposal/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/2-proposal/",
 	"title": "2. Proposal",
 	"tags": [],
 	"description": "",
 	"content": "AWS Monitoring \u0026amp; Alerting System Architecture for Monitoring and Alerting Amazon EC2 on AWS 1. Executive Summary This proposal presents a solution for building a basic monitoring and alerting system for Amazon EC2 on the AWS platform. The goal of the system is to monitor the operating status of an EC2 instance, collect monitoring information and system logs, detect cases where CPU usage exceeds the allowed threshold, and send alerts to the administrator.\nThe system uses AWS services including Amazon EC2, Amazon CloudWatch, CloudWatch Agent, Amazon SNS, IAM, and Amazon VPC. EC2 acts as the server to be monitored. CloudWatch Agent is installed on EC2 to collect system logs and monitoring information. CloudWatch is responsible for storing metrics, logs, and monitoring the system status through Alarms. When CPU exceeds the configured threshold, the CloudWatch Alarm changes from OK to In alarm and sends a notification through Amazon SNS to the administrator\u0026rsquo;s email.\nThe entire process is designed according to the following model:\nEC2 → CloudWatch Agent → CloudWatch Metrics / Logs → CloudWatch Alarm → SNS → Email\nThe solution helps build a complete process from monitoring → detection → alerting → recovery, while helping the intern understand how to deploy a basic monitoring system on AWS.\n2. Problem Statement Current Problems Difficulty monitoring server status: When a system has multiple EC2 instances, manually checking CPU, memory, and logs on each server takes a lot of time. Failure to detect overload conditions promptly: If the CPU of an EC2 instance remains high for a long time without an alerting system, the administrator may not detect the problem in time. Logs distributed across servers: System logs are stored directly on EC2, making remote inspection and monitoring difficult. Lack of automatic alerting mechanisms: When a problem occurs, the system does not automatically send notifications to the administrator. Difficulty checking the recovery process: Without monitoring and Alarms, it is difficult to accurately determine when the system returns to normal status. Proposed Solution The system is designed based on the principle of centralizing monitoring and alerting on Amazon CloudWatch.\nThe architecture includes the following main components:\nEC2 Instance: Runs Amazon Linux 2023 and acts as the server to be monitored. IAM Role: Provides the necessary permissions for EC2 to send monitoring data and logs to CloudWatch. CloudWatch Agent: Installed on EC2 to collect system logs and monitoring data. CloudWatch Metrics: Monitors EC2 operating metrics, including CPU Utilization. CloudWatch Logs: Centralizes and stores logs from EC2. CloudWatch Alarm: Monitors CPU and detects when CPU exceeds the 70% threshold. Amazon SNS: Receives notifications from CloudWatch Alarm and sends alerts. Email: Receives alert notifications from SNS. Benefits Centralized monitoring: EC2 metrics and logs are monitored on CloudWatch. Automatic alerting: CloudWatch Alarm automatically detects when CPU exceeds the threshold. Fast notification: SNS sends alerts directly to email. Recovery monitoring: The Alarm can be confirmed to change from In alarm back to OK. Easy deployment and scalability: The model can be applied to multiple EC2 instances and expanded with additional types of metrics. 3. Solution Architecture Overall Architecture Diagram Details of the Components in the Architecture 1. Amazon VPC \u0026amp; Public Subnet The EC2 instance is deployed in an Amazon VPC and Public Subnet to allow Internet connectivity for administration and practical activities.\nActual environment:\nVPC: vpc-05c77177c5e1b6477 Subnet: public-subnet-monitoring Subnet CIDR: 172.31.0.0/20 Availability Zone: ap-southeast-2a 2. Security Group The Security Group is used to control traffic to the EC2 instance.\nMain configuration:\nInbound: SSH TCP port 22 from My IP. Outbound: Allows EC2 to connect externally for installation and sending monitoring data. 3. Amazon EC2 EC2 is the main server used to perform the monitoring lab.\nDeployment information:\nInstance name: Monitoring-Lab-Instance Instance type: t3.micro Operating System: Amazon Linux 2023 Region: ap-southeast-2 (Sydney) 4. IAM Role The IAM Role EC2-CloudWatchAgent-Role is attached to the EC2 instance to provide permissions for CloudWatch Agent to send monitoring data and logs to CloudWatch.\nMain policy:\nCloudWatchAgentServerPolicy\n5. CloudWatch Agent CloudWatch Agent is installed directly on the EC2 instance.\nThe Agent is responsible for collecting monitoring data and system logs, then sending the data to Amazon CloudWatch.\nVersion used:\n1.300069.1\n6. CloudWatch Metrics CloudWatch Metrics is used to monitor EC2 operating metrics.\nThe most important metric in the workshop is:\nCPUUtilization\nThis metric is used as the basis for creating the CloudWatch Alarm.\n7. CloudWatch Logs CloudWatch Logs is used to centralize logs from EC2.\nLog Groups used:\nmessages secure Log retention period:\n7 days\n8. CloudWatch Alarm CloudWatch Alarm is configured to monitor CPU Utilization.\nAlarm:\nHigh-CPU-Alarm-Monitoring-Lab\nThreshold:\nCPU \u0026gt; 70% for 5 minutes\nWhen CPU exceeds the threshold, the Alarm changes status:\nOK → In alarm\nWhen CPU decreases back to normal:\nIn alarm → OK\n9. Amazon SNS Amazon SNS is used to send notifications when the CloudWatch Alarm changes state.\nSNS Topic:\nsystem-alerts\nSNS sends alert emails to the registered email address and confirms the subscription.\n4. Technical Implementation Implementation Stages Stage 1: Prepare the AWS Environment\nCreate or use an Amazon VPC. Identify the Public Subnet. Configure the Security Group. Prepare IAM permissions for EC2. Stage 2: Deploy Amazon EC2\nCreate an EC2 instance. Use Amazon Linux 2023. Select instance type t3.micro. Attach the IAM Role EC2-CloudWatchAgent-Role. Check the EC2 status after launch. Stage 3: Install CloudWatch Agent\nConnect to EC2 through SSH. Install CloudWatch Agent. Check the Agent version. Create and configure the configuration file. Start CloudWatch Agent. Check the Agent status. Stage 4: Configure CloudWatch Logs\nConfigure the Agent to collect system logs. Send logs from EC2 to CloudWatch Logs. Check the messages Log Group. Check the secure Log Group. Check the log events. Stage 5: Configure CloudWatch Alarm\nSelect the CPUUtilization metric. Set the CPU threshold above 70%. Configure the evaluation period to 5 minutes. Name the Alarm High-CPU-Alarm-Monitoring-Lab. Check the initial Alarm status. Stage 6: Configure Amazon SNS\nCreate the SNS Topic system-alerts. Create an email subscription. Confirm the subscription. Link SNS with the CloudWatch Alarm. Check the ability to receive alert emails. Stage 7: Test the System\nCreate CPU load using the stress tool. Monitor CPU Utilization. Check the Alarm changes to In alarm. Check SNS sends an email. Stop the CPU load. Check CPU decreases to normal. Confirm the Alarm returns to OK. Technical \u0026amp; Security Requirements IAM Role: EC2 uses an IAM Role to access the required AWS services instead of storing Access Keys directly on the server. Security Group: Only allows SSH TCP port 22 from the administrator\u0026rsquo;s IP address. CloudWatch Monitoring: Monitors the EC2 operating status through metrics and logs. SNS Notification: Only uses the confirmed email subscription to receive alerts. Resource Cleanup: Stops EC2 after completing the workshop to avoid unnecessary costs. 5. Implementation Roadmap \u0026amp; Milestones +--------------------------------------------------------------------------------+ | Stage 1: Prepare the AWS Environment | | - Identify VPC, Public Subnet and Security Group | | - Prepare IAM Role | +--------------------------------------------------------------------------------+ | v +--------------------------------------------------------------------------------+ | Stage 2: Deploy EC2 | | - Create Monitoring-Lab-Instance | | - Configure Amazon Linux 2023 and SSH | +--------------------------------------------------------------------------------+ | v +--------------------------------------------------------------------------------+ | Stage 3: Configure CloudWatch Agent | | - Install CloudWatch Agent | | - Configure Metrics and Logs | | - Check Agent operation | +--------------------------------------------------------------------------------+ | v +--------------------------------------------------------------------------------+ | Stage 4: Configure CloudWatch \u0026amp; SNS | | - Create CloudWatch Alarm | | - Configure CPU threshold \u0026gt; 70% | | - Create SNS Topic and Email Subscription | +--------------------------------------------------------------------------------+ | v +--------------------------------------------------------------------------------+ | Stage 5: Testing \u0026amp; Recovery | | - Create CPU load | | - Check Alarm changes to In alarm | | - Check SNS email | | - Stop the load and confirm Alarm returns to OK | +--------------------------------------------------------------------------------+ 6. Budget Estimation The workshop is designed in a simple and cost-effective way, using the AWS resources necessary for practical purposes.\nAWS Service Estimated Configuration / Scale Estimated Cost Amazon EC2 t3.micro, used during the practical session Depends on usage time Amazon CloudWatch Metrics, Logs and Alarm Depends on usage CloudWatch Agent Installed on EC2 No separate charge Amazon SNS 1 Topic + Email Subscription Low cost / depends on usage Amazon VPC VPC and Public Subnet No separate charge for VPC/Subnet Security Group SSH TCP/22 No separate charge IAM Role EC2-CloudWatchAgent-Role No separate charge Cost Optimization Points:\nUse the t3.micro instance type suitable for the practical environment. Only run EC2 when necessary. Stop EC2 after completing the tests. Configure CloudWatch Logs retention to 7 days. Monitor AWS Billing to control incurred costs. 7. Risk Assessment Risk Matrix \u0026amp; Mitigation Strategies Potential Risk Impact Level Probability Mitigation Strategy EC2 cannot connect through SSH Medium Medium Check Public IP, Security Group and TCP port 22 access permissions. CloudWatch Agent does not work High Low Check service status, configuration and the IAM Role of EC2. Log Group does not appear Medium Medium Check the CloudWatch Agent configuration and CloudWatchAgentServerPolicy permissions. CPU does not exceed the Alarm threshold Medium Low Use the stress tool to create CPU load and check the metric again. SNS does not send email High Low Check that the SNS subscription has been confirmed and check the Alarm Action configuration. Alarm does not return to OK Medium Low Stop the CPU load process and continue monitoring CPU Utilization. AWS costs are incurred Medium Medium Stop EC2 and check resources after completing the workshop. 8. Expected Results Successfully build the monitoring system: Deploy a basic monitoring system for Amazon EC2 using CloudWatch. Collect metrics and logs: CloudWatch Agent sends monitoring data and logs from EC2 to CloudWatch. Detect high CPU conditions: CloudWatch Alarm detects when CPU exceeds the 70% threshold. Automatic alerting: Amazon SNS sends an email when the Alarm changes to In alarm. Check recovery: The Alarm changes from In alarm back to OK after CPU decreases. Improve AWS knowledge: Understand how to combine IAM, VPC, EC2, CloudWatch and SNS to build a practical monitoring system. Optimize costs: Use resources appropriately for the practical environment and perform cleanup after completion. The final goal of the workshop is to successfully build and test the following process:\nMonitoring → Detection → Alerting → Recovery\nthereby demonstrating that the system can monitor, detect incidents, send alerts, and confirm system recovery in the AWS environment.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.2-monitor-logs/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.2-monitor-logs/",
 	"title": "5.10.2 Monitor Logs",
 	"tags": [],
 	"description": "",
 	"content": "Observe Logs Open CloudWatch → Log management → Log groups and select messages or secure.\nOpen the corresponding Log Stream to inspect events generated by the EC2 instance.\nResult Logs are available for near-real-time monitoring and troubleshooting.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.2-verify-alarm/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.2-verify-alarm/",
 	"title": "5.11.2 Check Alarm Activation",
 	"tags": [],
 	"description": "",
 	"content": " Open CloudWatch → Alarms.\nSelect High-CPU-Alarm-Monitoring-Lab.\nWait approximately 5–7 minutes and refresh.\nMonitor the Alarm changing from OK to In alarm.\nCheck that CPUUtilization exceeds the 70% threshold.\nIn practice, CPU reached approximately 87.2% and was higher at some points.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.2-prerequisite/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.2-prerequisite/",
 	"title": "5.2 Prerequisite",
 	"tags": [],
 	"description": "",
 	"content": "Prerequisites An AWS account. Access to the AWS Management Console. A Windows or Linux computer with an SSH client. A key pair for connecting to the EC2 instance. An email address for confirming the SNS subscription. Basic knowledge of EC2, VPC, IAM, and CloudWatch. Workshop Environment The lab is deployed in the ap-southeast-2 (Sydney) AWS Region.\nThe EC2 instance uses Amazon Linux 2023 and the t3.micro instance type.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/",
 	"title": "5.3.2 Prepare AWS Account",
 	"tags": [],
 	"description": "",
 	"content": "Prepare the AWS Account Sign in to the AWS Management Console. Verify access to EC2, VPC, IAM, CloudWatch, and SNS. Check that the required permissions are available. Confirm the selected Region is ap-southeast-2. Result The AWS account is ready for the monitoring lab.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.2-create-public-subnet/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.2-create-public-subnet/",
 	"title": "5.4.2 Create Public Subnet",
 	"tags": [],
 	"description": "",
 	"content": "Create the Public Subnet Open VPC Console → Subnets → Create subnet. Select the Default VPC. Subnet name: public-subnet-monitoring. Availability Zone: ap-southeast-2a. IPv4 CIDR: 172.31.0.0/20. Create the subnet. Enable Auto-assign public IPv4 address. Result The public subnet is ready for the EC2 monitoring instance.\nFigure 3. Public subnet prepared for the monitoring instance.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.2-connect-ssh/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.2-connect-ssh/",
 	"title": "5.6.2 Connect to EC2 Using SSH",
 	"tags": [],
 	"description": "",
 	"content": "Connect Using PowerShell cd $HOME\\Downloads Set the key permissions:\nicacls.exe .\\monitoring-lab-key.pem /reset icacls.exe .\\monitoring-lab-key.pem /grant:r \u0026#34;$($env:USERNAME):(R)\u0026#34; icacls.exe .\\monitoring-lab-key.pem /inheritance:r Connect:\nssh -i \u0026#34;monitoring-lab-key.pem\u0026#34; ec2-user@\u0026lt;Public-IP\u0026gt; Type yes when asked to confirm the host fingerprint.\nResult The SSH session connects successfully to the Amazon Linux 2023 instance.\nFigure 4. Successful SSH connection to the EC2 instance.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.2-configure-agent/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.2-configure-agent/",
 	"title": "5.7.2 Configure CloudWatch Agent",
 	"tags": [],
 	"description": "",
 	"content": "Run the Configuration Wizard sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard Settings used in this lab:\nOS: Linux Environment: EC2 User: cwagent StatsD: disabled Host metrics: enabled CPU, memory, and disk metrics: enabled Logs: /var/log/messages and /var/log/secure Retention: 7 days Do not store configuration in SSM. Figure 6. CloudWatch Agent configuration.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/",
 	"title": "5.9.2 Configure SNS Notification",
 	"tags": [],
 	"description": "",
 	"content": "Create the SNS Topic Set the alarm trigger to In alarm. Select Create new topic. Topic name: system-alerts. Enter the email address that will receive notifications. Create the topic. Open the confirmation email from AWS. Select Confirm subscription. Set the alarm name to High-CPU-Alarm-Monitoring-Lab. Review and create the alarm. Result The SNS subscription is confirmed and the alarm is connected to the notification topic.\nFigure 11. SNS topic configured for the CloudWatch Alarm.\nFigure 12. SNS email subscription confirmed.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.2-blog-2/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.2-blog-2/",
 	"title": "Connecting Amazon S3 from a VPC with VPC Endpoints",
 	"tags": [],
 	"description": "",
 	"content": "1. Overview Workloads inside an Amazon VPC often need to read or write data in Amazon S3. A VPC endpoint provides a private entry point from the VPC to supported AWS services.\nFor S3, two important choices are Gateway VPC Endpoints and Interface VPC Endpoints.\n2. Gateway VPC Endpoint A gateway endpoint is a common choice for workloads inside a VPC accessing S3 in the Region. The route table directs S3 traffic through the endpoint.\nAn Internet Gateway or NAT Gateway is not required solely for S3 access.\nAdvantages:\nsimple; suitable for EC2 inside a VPC; supports endpoint policies; generally cost-efficient. 3. Interface VPC Endpoint An interface endpoint uses AWS PrivateLink. AWS creates an Elastic Network Interface with a private IP address in the selected subnet.\nWorkloads connect to the private IP and traffic remains on the AWS network.\nThis is useful for broader private connectivity requirements, including architectures involving on-premises environments and PrivateLink.\n4. Comparison Criteria Gateway Endpoint Interface Endpoint Technology Route table AWS PrivateLink S3 Yes Yes Main component Route table ENI/private IP Typical use VPC workloads PrivateLink/private connectivity Cost profile Usually more cost-efficient Endpoint and data processing charges 5. Security Private connectivity does not automatically provide unrestricted access. A strong design can combine IAM policies, S3 bucket policies, endpoint policies, and least-privilege access. Security groups are also important for interface endpoints.\n6. Example EC2 private subnet → Route Table → S3 Gateway Endpoint → Amazon S3\nThe EC2 instance does not need a public IP or NAT Gateway solely for S3 access.\n7. Key takeaway VPC endpoints are an important building block for private-by-design AWS networking. Gateway endpoints are commonly suitable for VPC workloads accessing S3, while interface endpoints support broader PrivateLink requirements.\n8. References Choosing Your VPC Endpoint Strategy for Amazon S3 – AWS Architecture Blog\nReduce Cost and Increase Security with Amazon VPC Endpoints – AWS Architecture Blog\nIntroducing private DNS support for Amazon S3 with AWS PrivateLink – AWS Storage Blog\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.2-event2/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/4-events-participated/4.2-event2/",
 	"title": "Event 2",
 	"tags": [],
 	"description": "",
 	"content": "Event 2 Event Name: Event 2\nTime: Not updated\nLocation: Not updated\nRole: Participant\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/2-week2/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/2-week2/",
 	"title": "Week 2: AWS Core Services - EC2, S3, and IAM",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn about Amazon EC2, Amazon S3, and AWS IAM. Practice creating an EC2 instance and an S3 bucket. Learn about IAM Users, Groups, Roles, and Policies. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn about Amazon EC2, Amazon S3, and AWS IAM. 01/08/2026 07/08/2026 https://cloudjourney.awsstudygroup.com/ 2 Practice creating an EC2 instance and an S3 bucket. 01/08/2026 07/08/2026 https://cloudjourney.awsstudygroup.com/ 3 Learn about IAM Users, Groups, Roles, and Policies. 01/08/2026 07/08/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 2 Understand the main purposes of EC2, S3, and IAM. Perform basic operations with these AWS services. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/",
 	"title": "3-Blogs-Posted",
 	"tags": [],
 	"description": "",
 	"content": "During my internship, I studied and summarized three technical blog topics related to Amazon Web Services (AWS), focusing on system monitoring, networking, and serverless event-driven architectures. These topics helped strengthen my practical understanding of deploying, securing, and operating workloads on AWS.\n# Topic Category Publication Date Blog 1 Monitoring Amazon EC2 with Amazon CloudWatch and Configuring Alarms Monitoring \u0026amp; Operations Blog 2 Connecting Amazon S3 from a VPC using VPC Endpoints Networking \u0026amp; Security Blog 3 Building Event-Driven Architectures with Amazon SQS and AWS Lambda Serverless \u0026amp; Event-Driven Architecture 3.1 Blog 1 – Monitoring Amazon EC2 with Amazon CloudWatch Amazon EC2 is one of the most widely used compute services on AWS. When running EC2 instances in a production environment, monitoring system performance is important for identifying potential issues early.\nThis blog explains how to use Amazon CloudWatch to collect and monitor EC2 metrics such as CPU Utilization, and how to configure a CloudWatch Alarm to automatically detect when CPU utilization exceeds a defined threshold.\nThe monitoring architecture can be described as:\nAmazon EC2 → Amazon CloudWatch → CloudWatch Alarm → Notification\nCloudWatch allows administrators to monitor system performance, create dashboards, and configure alarms when workloads show abnormal behavior.\nThe blog also presents a practical testing scenario: generating CPU load on an EC2 instance, observing the metric in CloudWatch, verifying that the alarm changes to In alarm, and finally reducing the CPU load to confirm that the alarm returns to OK.\n3.2 Blog 2 – Connecting Amazon S3 from a VPC using VPC Endpoints Workloads running inside an Amazon VPC often need to access Amazon S3 for storing and retrieving data. However, for architectures with strict security requirements, sending traffic through the public Internet may not be the preferred approach.\nAmazon VPC Endpoint provides private connectivity between a VPC and supported AWS services.\nThis blog focuses on two major endpoint models:\nGateway VPC Endpoint Interface VPC Endpoint With a Gateway Endpoint, the VPC route table is configured so that traffic destined for Amazon S3 is routed through the endpoint instead of requiring an Internet Gateway or NAT Gateway.\nThe architecture is:\nEC2 Private Subnet → Route Table → S3 Gateway Endpoint → Amazon S3\nGateway Endpoints are simple to configure, suitable for workloads running inside a VPC, and can be combined with Endpoint Policies to control access.\nThe blog also explains Interface Endpoints, which are based on AWS PrivateLink. An Interface Endpoint creates an Elastic Network Interface with a private IP address inside selected subnets, allowing workloads to connect to supported services through private networking.\nThis comparison helps clarify how to select an appropriate VPC Endpoint architecture based on networking, security, connectivity, and cost requirements.\n3.3 Blog 3 – Building Event-Driven Architectures with Amazon SQS and AWS Lambda In modern cloud architectures, an event-driven architecture allows different components of a system to operate independently while providing better scalability.\nThis blog explains how to combine Amazon SQS and AWS Lambda to build an asynchronous processing system.\nThe overall architecture is:\nApplication → Amazon SQS → AWS Lambda → Processing\nInstead of directly calling the processing service, the application sends messages to Amazon SQS. Lambda then retrieves messages from the queue and processes them automatically.\nThis architecture provides several benefits:\nReduces direct dependencies between services. Handles workload spikes more effectively. Allows Lambda to automatically scale execution. Amazon SQS buffers messages during traffic spikes. Processing speed can be controlled through concurrency configuration. The blog also explores AWS Lambda scaling and concurrency when Amazon SQS is used as an event source, including improvements to polling and Lambda scale-up behavior for event-driven workloads.\nThis pattern is suitable for applications requiring background jobs, asynchronous processing, queue-based workloads, and serverless architectures.\nSummary The three blog topics cover three important aspects of building systems on AWS:\nCloudWatch – system monitoring and alerting. VPC Endpoint – private connectivity and improved security. SQS + Lambda – serverless event-driven architecture. Studying these topics provided practical knowledge of AWS Cloud, Networking, Monitoring, Security, and Serverless Architecture.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.3-verify-sns-email/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.3-verify-sns-email/",
 	"title": "5.11.3 Check SNS",
 	"tags": [],
 	"description": "",
 	"content": "After the Alarm changes to In alarm:\nOpen the registered email inbox. Check the alert email from AWS Notification. Confirm that the email contains Alarm Details and Reason. Check the time when the Alarm changed state. Example of the actual alert content:\nState Change: OK -\u0026gt; ALARM Reason: Threshold Crossed [100.0] was greater than the threshold (70.0) "
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/",
 	"title": "5.3 Prepare Project",
 	"tags": [],
 	"description": "",
 	"content": "Purpose Prepare the AWS environment before deploying the monitoring components.\nThe workshop uses the existing Default VPC. A public subnet is prepared for the EC2 instance so that the instance can be accessed through SSH during the lab.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/",
 	"title": "5.3.3 Verify AWS Environment",
 	"tags": [],
 	"description": "",
 	"content": "Verify the Environment Verify that the Default VPC is available, a subnet can be created, EC2 can be launched, IAM roles can be created, and CloudWatch and SNS are accessible.\nResult The AWS environment is ready for the next steps.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.3-configure-security-group/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.3-configure-security-group/",
 	"title": "5.4.3 Configure Security Group",
 	"tags": [],
 	"description": "",
 	"content": "Configure the Security Group Open the EC2 network settings. Allow SSH (TCP port 22). Set the source to My IP. Do not expose unnecessary ports. Result The Security Group allows administrative SSH access while minimizing unnecessary network exposure.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.3-verify-ec2/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.3-verify-ec2/",
 	"title": "5.6.3 Verify EC2",
 	"tags": [],
 	"description": "",
 	"content": "Verify the Instance Check that the instance is Running, status checks pass, a public IPv4 address is assigned, SSH works, and EC2-CloudWatchAgent-Role is attached.\nResult The EC2 monitoring target is ready for CloudWatch Agent installation.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.3-start-and-verify/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.3-start-and-verify/",
 	"title": "5.7.3 Start and Verify Agent",
 	"tags": [],
 	"description": "",
 	"content": "Start and Check the Agent Check the service status:\nsudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status Result The CloudWatch Agent is running.\nFigure 6. CloudWatch Agent in running state.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.3-blog-3/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.3-blog-3/",
 	"title": "Building an Event-Driven Architecture with Amazon SQS and AWS Lambda",
 	"tags": [],
 	"description": "",
 	"content": "1. Overview Modern applications do not always need direct synchronous communication. A producer can place a message in Amazon SQS and a consumer can process it asynchronously.\nWhen combined with AWS Lambda, SQS enables event-driven processing without managing servers.\nBasic flow:\nApplication/Producer → Amazon SQS → Lambda Event Source Mapping → AWS Lambda\n2. The role of SQS SQS acts as a buffer between producers and consumers. When traffic suddenly increases, messages can queue instead of forcing the consumer to process everything immediately.\nBenefits:\nreduced coupling; burst absorption; asynchronous processing; retry support; independent consumer scaling. 3. Lambda message processing Lambda can use Event Source Mapping to consume messages from SQS. Lambda polls the queue and invokes the function to process batches.\nDevelopers can focus on business logic instead of implementing polling infrastructure.\n4. Scaling and concurrency As message volume increases, Lambda can increase executions to process the queue faster. However, aggressive scaling can put pressure on downstream databases or APIs.\nAWS provides maximum concurrency controls for Lambda when SQS is the event source, helping control processing rate and protect downstream services.\n5. Retry and DLQ Messages can fail because of application errors or dependency failures. After the configured retry behavior, a message can be moved to a Dead-Letter Queue.\nDLQs help isolate failed messages, prevent endless retries, and support troubleshooting or controlled reprocessing.\n6. Practical example An e-commerce system:\nA customer places an order. The application creates a message. The message is sent to SQS. Lambda receives the message. Lambda validates and processes the order. A failed message is retried. Repeated failures send the message to the DLQ. 7. Key takeaway SQS provides buffering and decoupling, while Lambda provides serverless processing and scaling. Production designs should consider idempotency, batch size, concurrency, downstream capacity, and DLQ requirements.\n8. References AWS – Maximum concurrency với Lambda và SQS\nAWS – Faster polling scale-up cho Lambda và SQS\nAWS – Designing event-driven architectures\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/3-week3/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/3-week3/",
 	"title": "Week 3: AWS Networking - VPC, Subnet, and Internet Gateway",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn about VPC, Public Subnet, and Private Subnet. Learn about Internet Gateway and Route Table. Practice creating a VPC and configuring a basic network. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn about VPC, Public Subnet, and Private Subnet. 08/08/2026 14/08/2026 https://cloudjourney.awsstudygroup.com/ 2 Learn about Internet Gateway and Route Table. 08/08/2026 14/08/2026 https://cloudjourney.awsstudygroup.com/ 3 Practice creating a VPC and configuring a basic network. 08/08/2026 14/08/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 3 Understand the structure of a VPC and its subnets. Configure an Internet Gateway and Route Table at a basic level. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/4-events-participated/",
 	"title": "4. Events Participated",
 	"tags": [],
 	"description": "",
 	"content": "During my internship, I participated in events that provided valuable opportunities to learn new knowledge, connect with the AWS community, and keep up with new technology trends.\nEvent 1 Event Name: AWS VIETNAM COMMUNITY MEETUP\nTime: Saturday, July 25, 2026, 08:30 - 12:00\nLocation: Grand Terra, 36 Cat Linh, O Cho Dua, Hanoi, Vietnam\nRole: Participant\nEvent 2 Event Name: Event 2\nTime: Not updated\nLocation: Not updated\nRole: Participant\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.4-verify-recovery/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.4-verify-recovery/",
 	"title": "5.11.4 Check Alarm Returns to OK",
 	"tags": [],
 	"description": "",
 	"content": "## Check Alarm Returns to OK Status\nAfter the stress command ends after 300 seconds:\nCPU gradually decreases.\nContinue observing the Alarm on CloudWatch.\nConfirm that the Alarm status changes from In alarm → OK.\nCheck the CPU chart showing the process of increasing load and then decreasing load.\n## Actual Result\nThe Alarm returns to OK status, demonstrating that the recovery mechanism works correctly.\n## Actual Evidence\nFigure 15. Alarm returns to OK after stopping the load\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/",
 	"title": "5.4 Networking",
 	"tags": [],
 	"description": "",
 	"content": "Networking Overview The EC2 monitoring instance is deployed in the AWS Default VPC using a public subnet.\nThe network path allows administrative SSH access while the CloudWatch Agent sends monitoring data to AWS services.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.4-configure-system-logs/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.4-configure-system-logs/",
 	"title": "5.7.4 Configure System Logs",
 	"tags": [],
 	"description": "",
 	"content": "Configure rsyslog Amazon Linux 2023 may not have /var/log/messages and /var/log/secure available by default.\nsudo yum install rsyslog -y sudo systemctl enable rsyslog sudo systemctl start rsyslog Allow the CloudWatch Agent to read the logs:\nsudo usermod -a -G adm cwagent sudo chmod 640 /var/log/messages /var/log/secure sudo chgrp adm /var/log/messages /var/log/secure sudo systemctl restart amazon-cloudwatch-agent Figure 7. rsyslog installed and started successfully.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/4-week4/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/4-week4/",
 	"title": "Week 4: Security Groups and Network Routing",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn about Security Groups and traffic control. Practice configuring SSH, HTTP, and HTTPS rules. Test EC2 connectivity and troubleshoot basic network problems. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn about Security Groups and traffic control. 15/08/2026 21/08/2026 https://cloudjourney.awsstudygroup.com/ 2 Practice configuring SSH, HTTP, and HTTPS rules. 15/08/2026 21/08/2026 https://cloudjourney.awsstudygroup.com/ 3 Test EC2 connectivity and troubleshoot basic network problems. 15/08/2026 21/08/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 4 Understand how Security Groups control network traffic. Identify and troubleshoot common connectivity problems. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/",
 	"title": "5. Workshop",
 	"tags": [],
 	"description": "",
 	"content": "AWS Monitoring Workshop This workshop builds and tests a basic monitoring system for an Amazon EC2 instance.\nMonitoring flow:\nEC2 Instance → CloudWatch Agent → CloudWatch Logs / Metrics → CloudWatch Alarm → SNS → Email\nThe workshop includes IAM configuration, VPC/Subnet/Security Group configuration, EC2 deployment, CloudWatch Agent installation, log collection, CPU monitoring, alarm configuration, SNS email notifications, recovery testing, and resource cleanup.\nOverall Architecture Diagram The following diagram describes the AWS architecture actually deployed during the workshop:\nFigure 1. Overall AWS architecture\nOperation Flow USER accesses the AWS environment through the Internet.\nInternet Gateway provides Internet connectivity to the VPC.\nVPC uses the CIDR 10.0.0.0/16.\nPublic Subnet uses the CIDR 10.0.1.0/24.\nEC2 is deployed inside the Public Subnet.\nSecurity Group controls inbound and outbound traffic to the EC2 instance.\nIAM Role provides the permissions required for EC2 to send monitoring data to CloudWatch.\nCloudWatch Metrics receives monitoring metrics, including CPU Utilization.\nCloudWatch Logs stores logs collected from the EC2 instance.\nCloudWatch Alarm monitors CPU utilization and detects when the CPU exceeds the configured threshold.\nSNS receives notifications from the CloudWatch Alarm.\nEmail receives alert notifications from SNS.\nActual Deployment Environment Region: ap-southeast-2 (Sydney) EC2: Amazon Linux 2023, t3.micro Instance Name: Monitoring-Lab-Instance IAM Role: EC2-CloudWatchAgent-Role Log Groups: messages, secure Alarm: High-CPU-Alarm-Monitoring-Lab SNS Topic: system-alerts Log Retention: 7 days Results The main testing scenarios were successfully completed:\nCloudWatch Agent was successfully installed and running. Logs were successfully sent to CloudWatch Logs. CloudWatch Metrics successfully received monitoring data. The CloudWatch Alarm changed its state when CPU utilization exceeded the configured threshold. SNS successfully sent an email notification. The alarm returned to OK after the CPU load was stopped. The workshop successfully achieved its objective of building a monitoring workflow for Amazon EC2:\nMonitoring → Detection → Alerting → Recovery\nThis demonstrates a basic but practical AWS monitoring solution that can be used to monitor EC2 resources and detect abnormal CPU utilization.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.5-iam/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.5-iam/",
 	"title": "5.5 IAM",
 	"tags": [],
 	"description": "",
 	"content": "IAM Configuration IAM provides the CloudWatch Agent with permission to publish logs and metrics.\nRole: EC2-CloudWatchAgent-Role\nPolicy: CloudWatchAgentServerPolicy\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/5-week5/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/5-week5/",
 	"title": "Week 5: AWS Lambda and Serverless",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn about AWS Lambda and the Serverless model. Learn about Functions, Runtimes, Events, and Execution Roles. Create and test a basic Lambda Function. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn about AWS Lambda and the Serverless model. 22/08/2026 28/08/2026 https://cloudjourney.awsstudygroup.com/ 2 Learn about Functions, Runtimes, Events, and Execution Roles. 22/08/2026 28/08/2026 https://cloudjourney.awsstudygroup.com/ 3 Create and test a basic Lambda Function. 22/08/2026 28/08/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 5 Understand the basic principles of Serverless Computing. Create and test a basic Lambda Function. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/",
 	"title": "5.6 EC2",
 	"tags": [],
 	"description": "",
 	"content": "EC2 Deployment An EC2 instance is used as the monitoring target.\nName: Monitoring-Lab-Instance AMI: Amazon Linux 2023 Instance type: t3.micro Region: ap-southeast-2 Subnet: public-subnet-monitoring IAM role: EC2-CloudWatchAgent-Role "
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/6-self-assessment/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/6-self-assessment/",
 	"title": "6. Self-Assessment",
 	"tags": [],
 	"description": "",
 	"content": "Self-Assessment From July 25, 2026 to September 28, 2026, I participated in the Workforce Bootcamp – First Cloud AI Journey program organized by Amazon Web Services (AWS) Vietnam. During the program, I had the opportunity to learn, practice, and apply the knowledge acquired at Hanoi University of Civil Engineering to practical activities related to cloud computing and AWS infrastructure.\nDuring the program, I completed a series of learning modules and hands-on labs related to AWS cloud infrastructure, including services such as Amazon EC2, Amazon S3, AWS IAM, Amazon VPC, Amazon RDS, AWS Lambda, Amazon CloudWatch, Auto Scaling, AWS CloudFormation, Docker/ECS, and CI/CD. Through these learning and hands-on activities, I strengthened my knowledge of cloud computing, system configuration, resource management, and security on AWS, while also improving my self-learning, technical research, teamwork, and technical report writing skills.\nIn particular, during Workshop 5, I completed practical activities including deploying a VPC and Subnets, configuring Security Groups, setting up an IAM Role, deploying an EC2 instance, installing and configuring the CloudWatch Agent, collecting CloudWatch Logs, configuring CloudWatch Alarms, setting up Amazon SNS notifications, testing the system, and cleaning up resources after completing the lab.\nThrough these hands-on exercises, I gained a better understanding of how to build and manage a basic system on AWS, as well as how Networking, Compute, Identity and Access Management, Monitoring, and Notification components work together. This process also helped me improve my troubleshooting skills, identify configuration problems, and proactively search for technical documentation to resolve issues encountered during the practical exercises.\nSelf-Assessment Criteria No. Criteria Description Excellent Good Average 1 Professional Knowledge and Skills Understanding of AWS, system architecture, networking, and cloud-related practical activities ☐ ✅ ☐ 2 Learning Ability Ability to acquire new knowledge about Cloud Computing and AWS services ✅ ☐ ☐ 3 Proactiveness Proactively researching documentation and completing assignments and hands-on labs ☐ ✅ ☐ 4 Sense of Responsibility Completing assigned tasks, practical exercises, and reports on time ✅ ☐ ☐ 5 Discipline Following schedules, program rules, and practical requirements ✅ ☐ ☐ 6 Willingness to Improve Accepting feedback and actively improving knowledge and skills ✅ ☐ ☐ 7 Communication Ability to discuss and present technical issues clearly ☐ ✅ ☐ 8 Teamwork Collaborating, sharing knowledge, and supporting other participants ✅ ☐ ☐ 9 Professional Attitude Maintaining a serious and respectful attitude toward mentors and other participants ✅ ☐ ☐ 10 Problem-Solving Skills Ability to identify and troubleshoot problems during practical exercises ☐ ✅ ☐ 11 Workshop Completion Completing VPC, IAM, EC2, CloudWatch, SNS, testing, and cleanup activities ☐ ✅ ☐ 12 Overall Performance Overall assessment of learning and training results during the program ☐ ✅ ☐ Areas for Improvement Professional Knowledge: Continue strengthening my knowledge of AWS, Cloud Computing, Networking, and Security, especially in designing and deploying practical cloud-based systems.\nHands-on Skills: Practice AWS services more frequently and build additional practical labs to improve my ability to deploy, configure, and manage cloud infrastructure.\nTroubleshooting Skills: Improve my ability to analyze logs, check configurations, and identify the root cause of problems before seeking assistance.\nCommunication and Presentation Skills: Improve my ability to present technical information in a concise, clear, structured, and easy-to-understand manner.\nSelf-Learning Skills: Proactively study technical documentation, especially AWS documentation, and continuously update my knowledge of technologies related to Cloud, Networking, and Security.\nDevelopment Orientation: Continue applying the knowledge and skills gained from the Workforce Bootcamp – First Cloud AI Journey program to my studies, assignments, and personal projects at Hanoi University of Civil Engineering, thereby gradually improving my professional capabilities and preparing myself for future career opportunities.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/6-week6/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/6-week6/",
 	"title": "Week 6: Amazon RDS, DynamoDB, and Data Management",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn about Amazon RDS and Amazon DynamoDB. Compare relational databases and NoSQL databases. Practice basic data management concepts on AWS. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn about Amazon RDS and Amazon DynamoDB. 29/08/2026 04/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Compare relational databases and NoSQL databases. 29/08/2026 04/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Practice basic data management concepts on AWS. 29/08/2026 04/09/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 6 Understand the differences between RDS and DynamoDB. Understand the basic components involved in managing data on AWS. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/",
 	"title": "5.7 CloudWatch Agent",
 	"tags": [],
 	"description": "",
 	"content": "CloudWatch Agent The CloudWatch Agent collects system metrics and log files from the EC2 instance and publishes them to Amazon CloudWatch.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/7-sharing-and-feedback/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/7-sharing-and-feedback/",
 	"title": "7. Sharing and Feedback",
 	"tags": [],
 	"description": "",
 	"content": "During the First Cloud AI Journey program, I had the opportunity to learn and practice various topics related to Cloud Computing, Networking, and Cloud Security. Through the hands-on workshops and project development process, I gained a better understanding of how networking and security concepts can be applied in a real-world cloud environment.\n1. Overall Evaluation 1.1. Networking and Cloud Knowledge One of the most useful parts of the program for me was the opportunity to practice networking concepts directly on AWS.\nThrough working with components such as VPC, Subnet, Route Table, Internet Gateway, Security Group, and Network ACL, I gained a better understanding of how to design, divide, and control a network system in the Cloud.\nPreviously, I mainly learned networking through theoretical concepts. By practicing directly on AWS, I was able to better understand the relationship between different network components and how data can be allowed or restricted when moving between resources.\n1.2. Applying Knowledge to My Project During my project development, I focused on data protection and encryption, specifically selectively encrypting important components of JPEG images.\nThe goal of my project is to reduce processing time by encrypting only the necessary components while still ensuring that the encrypted image cannot be normally viewed or used without the decryption key.\nThrough learning about Cloud and Networking, I realized that data protection does not only depend on the encryption algorithm. It is also related to how data is stored, transmitted, and accessed.\nThese concepts gave me a broader perspective on how I can improve my project and make it more secure when deployed in a Cloud environment.\n1.3. Network Security Knowledge The topics related to Security Groups, Network ACLs, and IAM helped me better understand how access to AWS resources can be controlled.\nIn particular, allowing only necessary connections helped me understand the principles of Least Privilege and Network Isolation more clearly.\nThese are areas that I would like to continue studying because they can be applied to building Cloud systems that better protect data and prevent unnecessary access.\n1.4. Troubleshooting Skills During the hands-on Labs, I encountered several issues related to network configuration, access permissions, and connectivity between resources.\nChecking Route Tables, Security Groups, Network ACLs, and logs helped me develop a systematic approach to troubleshooting instead of randomly changing configurations.\nAs a result, I improved my ability to analyze problems and troubleshoot issues related to AWS networking.\n2. What I Liked Most What I liked most about the program was the opportunity to practice directly in the AWS environment instead of only studying theory.\nCreating resources, configuring networks, testing connectivity, and monitoring the system helped me understand the concepts more clearly.\nIn particular, the knowledge of Networking and Cloud Security gave me a stronger foundation for continuing to develop my project in a direction that combines data protection and Cloud infrastructure security.\n3. Suggestions for Improvement In my opinion, the program could include more practical and advanced Labs focusing on AWS Networking and Cloud Security.\nFor example, a complete Lab could follow this process:\nVPC → Public/Private Subnet → Route Table → Security Group → Network ACL → Connectivity Testing → Log Monitoring\nThe Lab could then provide several network configuration problems for interns to investigate and troubleshoot themselves.\nIn addition, practical exercises related to protecting data during transmission and storage in the Cloud would be very useful for students who are interested in Network Security and Cloud Security.\n4. Suggestions and Future Goals I would suggest that the program organize more Deep Dive sessions on Networking and Cloud Security, focusing on practical topics such as:\nDesigning Public and Private networks on AWS. Dividing and isolating networks using VPC and Subnets. Controlling traffic using Security Groups and Network ACLs. Analyzing and troubleshooting network connectivity issues. Monitoring systems and network activities using CloudWatch. Protecting data during transmission and storage. Combining data security with Cloud infrastructure security. In the future, I would like to continue learning more about AWS Networking, Cloud Security, and Data Protection, and apply the knowledge I have gained to my project in order to build a more practical and secure system.\n5. Acknowledgement I would like to sincerely thank the organizers, mentors, and everyone involved in the First Cloud AI Journey program for supporting me throughout the internship.\nThe program helped me gain practical knowledge about Cloud Computing, Networking, and Security, while also helping me better understand how networking, security, and data protection can be combined in a Cloud system.\nThese are valuable skills and experiences that I can continue to apply to my personal projects and studies in the future.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/7-week7/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/7-week7/",
 	"title": "Week 7: CloudWatch, Logs, and CloudTrail",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn about Amazon CloudWatch, CloudWatch Agent, and CloudWatch Logs. Learn about CloudWatch Alarms and Amazon SNS. Learn about AWS CloudTrail and practice monitoring AWS activities. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn about Amazon CloudWatch, CloudWatch Agent, and CloudWatch Logs. 05/09/2026 11/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Learn about CloudWatch Alarms and Amazon SNS. 05/09/2026 11/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Learn about AWS CloudTrail and practice monitoring AWS activities. 05/09/2026 11/09/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 7 Monitor metrics and logs from AWS resources. Understand how to configure an Alarm and use CloudTrail to monitor activities. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.8-cloudwatch-logs/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.8-cloudwatch-logs/",
 	"title": "5.8 CloudWatch Logs",
 	"tags": [],
 	"description": "",
 	"content": "## Troubleshooting: Log Group Not Appearing\nIf the Agent is running but the Log Group does not appear:\nCheck the Agent log: sudo tail -n 30 /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log Check: sudo tail -n 20 /var/log/messages On Amazon Linux 2023, rsyslog is not installed by default, so the /var/log/messages and /var/log/secure files may not exist.\nInstall and enable rsyslog: sudo yum install rsyslog -y sudo systemctl enable rsyslog sudo systemctl start rsyslog Grant read permissions to the Agent: sudo usermod -a -G adm cwagent sudo chmod 640 /var/log/messages /var/log/secure sudo chgrp adm /var/log/messages /var/log/secure Restart the Agent: sudo systemctl restart amazon-cloudwatch-agent ## Verify Logs\nGo to CloudWatch Console → Log management → Log groups.\nCheck the following Log Groups:\nmessages secure Select the Log Stream by Instance ID to view the logs in near real time.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/8-week8/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/8-week8/",
 	"title": "Week 8: Elastic Load Balancer and Auto Scaling",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn about Elastic Load Balancing. Learn about Application Load Balancer and Auto Scaling Groups. Practice a multi-EC2 architecture behind a Load Balancer. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn about Elastic Load Balancing. 12/09/2026 18/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Learn about Application Load Balancer and Auto Scaling Groups. 12/09/2026 18/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Practice a multi-EC2 architecture behind a Load Balancer. 12/09/2026 18/09/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 8 Understand the role of a Load Balancer. Understand the basic mechanism of Auto Scaling and system scalability. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/",
 	"title": "5.9 CloudWatch Alarm",
 	"tags": [],
 	"description": "",
 	"content": "CPU Alarm The alarm monitors the EC2 CPUUtilization metric.\nStatistic: Average Period: 5 minutes Threshold: greater than 70% Alarm name: High-CPU-Alarm-Monitoring-Lab SNS topic: system-alerts Figure 10. CPU alarm configured with a threshold above 70%.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/9-week9/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/9-week9/",
 	"title": "Week 9: Docker and Amazon ECS",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Learn about Docker Images, Containers, and Dockerfiles. Learn about Amazon ECS. Practice the basic steps for deploying containers on AWS. Become familiar with the basic CI/CD deployment process. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Learn about Docker Images, Containers, and Dockerfiles. 19/09/2026 25/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Learn about Amazon ECS. 19/09/2026 25/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Become familiar with the basic CI/CD deployment process. 19/09/2026 25/09/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 9 Understand the basic concepts of Docker and ECS. Understand the basic workflow for deploying containerized applications. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/",
 	"title": "5.10 Monitoring",
 	"tags": [],
 	"description": "",
 	"content": "## Checking the Monitoring System\nThe system is monitored through the following workflow:\nEC2 → CloudWatch Agent → Logs / Metrics → Alarm → SNS → Email\nThe components that need to be checked:\nCloudWatch Agent: running\nLog Groups: messages, secure\nMetric: CPUUtilization\nAlarm: High-CPU-Alarm-Monitoring-Lab\nSNS Topic: system-alerts\nThe objective is to confirm that data from EC2 is collected and that the Alarm can respond when CPU utilization increases significantly.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/10-week10/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/10-week10/",
 	"title": "Week 10: Integrated Project, Testing, and Cleanup",
 	"tags": [],
 	"description": "",
 	"content": "Learning Objectives / Planned Work Integrate the learned knowledge to complete the AWS Workshop. Complete the VPC, Subnet, Security Group, IAM Role, EC2, and CloudWatch configuration. Configure CloudWatch Alarm and SNS. Perform end-to-end testing, troubleshooting, and resource cleanup. Tasks to Be Completed During the Week No. Task Start Date Completion Date Reference 1 Integrate the learned knowledge to complete the AWS Workshop. 26/09/2026 28/09/2026 https://cloudjourney.awsstudygroup.com/ 2 Complete the VPC, Subnet, Security Group, IAM Role, EC2, and CloudWatch configuration. 26/09/2026 28/09/2026 https://cloudjourney.awsstudygroup.com/ 3 Perform end-to-end testing, troubleshooting, and resource cleanup. 26/09/2026 28/09/2026 https://cloudjourney.awsstudygroup.com/ Results Achieved in Week 10 Complete the integrated AWS Workshop. Successfully test the Metric → CloudWatch Alarm → SNS workflow. Complete resource cleanup after the practice. Status: Completed\nEvidence / Documentation Screenshots of the AWS Management Console. AWS lab practice results. Resource configurations and testing results. Worklog and internship report. Reference: https://cloudjourney.awsstudygroup.com/\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/",
 	"title": "5.11 Testing",
 	"tags": [],
 	"description": "",
 	"content": "Testing Objective The complete end-to-end monitoring flow is tested:\nGenerate CPU load → CloudWatch receives the metric → Alarm changes to In alarm → SNS sends email → CPU decreases → Alarm returns to OK.\nTest Result Test Scenario Expected Result Actual Result Evaluation Generate CPU load CPU \u0026gt; 70% CPU reached about 87.2% and could reach higher during the test Passed Check Alarm OK → In alarm Alarm changed to In alarm Passed Check SNS Alert email is sent Email received with Alarm Details and Reason Passed Stop CPU load CPU decreases CPU returned to normal Passed Recovery In alarm → OK Alarm returned to OK Passed Conclusion The complete monitoring and alerting workflow was successfully verified end to end.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/",
 	"title": "5.12 Cleanup Resources",
 	"tags": [],
 	"description": "",
 	"content": "Cleanup After completing the workshop, stop the EC2 instance to avoid unnecessary charges.\nOpen EC2 → Instances. Select Monitoring-Lab-Instance. Select Instance state → Stop instance. Confirm the stop operation. CloudWatch resources can be removed when they are no longer required.\nCost Control For a learning lab, resources should be stopped or deleted immediately after testing. In the actual lab, the EC2 instance was stopped after the test to minimize costs.\n"
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "Internship Report Student Information: Full Name: Phạm Quang Thiện\nPhone Number: 0339631775\nEmail: quangthienpham35@gmail.com\nUniversity: Hanoi University of Civil Engineering\nMajor: Computer Systems and Network Engineering\nClass: 67MHT\nDepartment: Cloud Computing\nInternship Company: Amazon Web Services Vietnam Company Limited\nInternship Position: Workforce Bootcamp - First Cloud AI Journey\nInternship Period: From May 25, 2026 to September 29, 2026\nReport Contents Worklog Proposal Blogs Posted Events Participated Workshop Self-Assessment Sharing and Feedback "
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/categories/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "http://localhost:1313/QuangThienWorkshop-template/en/tags/",
+	"uri": "https://quangthin1615.github.io/QuangThienWorkshop-template/en/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",

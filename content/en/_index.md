@@ -22,7 +22,7 @@
 
 **Internship Period:** From May 25, 2026 to September 29, 2026
 
-![Ảnh đại diện của Phạm Quang Thiện](/QuangThienWorkshop-template/images/a.jpg)
+![Ảnh đại diện của Phạm Quang Thiện](/QuangThienWorkshop-template/images/a.png)
 
 ### Report Contents
 
