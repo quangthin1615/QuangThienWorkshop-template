@@ -92,3 +92,4 @@ weight = 21
 
 [caches.images]
 dir = ":cacheDir/images"
+publishDir = "docs"
