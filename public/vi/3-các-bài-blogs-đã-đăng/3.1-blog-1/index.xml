@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Giám sát Amazon EC2 bằng Amazon CloudWatch và cảnh báo tự động on Báo cáo thực tập AWS</title>
-    <link>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.1-blog-1/</link>
-    <description>Recent content in Giám sát Amazon EC2 bằng Amazon CloudWatch và cảnh báo tự động on Báo cáo thực tập AWS</description>
+    <title>blog-1 on Báo cáo thực tập AWS</title>
+    <link>http://localhost:1313/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.1-blog-1/</link>
+    <description>Recent content in blog-1 on Báo cáo thực tập AWS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <atom:link href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.1-blog-1/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.1-blog-1/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

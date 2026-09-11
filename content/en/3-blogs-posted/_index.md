@@ -1,93 +1,69 @@
 ---
-
 title: "3-Blogs-Posted"
 weight: 3
+---
+
+During my internship, I studied and summarized **two technical blog topics related to Amazon Web Services (AWS)**, focusing on **AWS Marketplace, software procurement, serverless architecture, and procurement automation**. These topics helped strengthen my practical understanding of integrating AWS services into enterprise workflows and automating software procurement processes.
+
+| **#** | **Topic** | **Category** | **Publication Date** | **Facebook Proof** |
+|---|---|---|---|---|
+| Blog 1 | **Understanding AWS Marketplace APIs: Embedding Software Procurement into Internal Workflows** | AWS Marketplace & Serverless Architecture | 09/09/2026 | [Nguyen Thau](https://www.facebook.com/profile.php?id=61592819087978) |
+| Blog 2 | **Continuing the AWS Marketplace Topic: When Contract Renewal Is Also Automated** | AWS Marketplace & Procurement Automation | 11/09/2026 | [Nguyen Thau](https://www.facebook.com/profile.php?id=61592819087978) |
 
 ---
 
-During my internship, I studied and summarized **three technical blog topics related to Amazon Web Services (AWS)**, focusing on **system monitoring, networking, and serverless event-driven architectures**. These topics helped strengthen my practical understanding of deploying, securing, and operating workloads on AWS.
+### [3.1 Blog 1 – Understanding AWS Marketplace APIs: Embedding Software Procurement into Internal Workflows](3.1-Blog-1/)
 
-| **#** | **Topic** | **Category** | **Publication Date** |
-|---|---|---|---|
-| Blog 1 | **Monitoring Amazon EC2 with Amazon CloudWatch and Configuring Alarms** | Monitoring & Operations | |
-| Blog 2 | **Connecting Amazon S3 from a VPC using VPC Endpoints** | Networking & Security | |
-| Blog 3 | **Building Event-Driven Architectures with Amazon SQS and AWS Lambda** | Serverless & Event-Driven Architecture | |
+AWS Marketplace provides many benefits: consolidated billing with AWS, pre-negotiated terms, a wide range of providers, and easier compliance management. However, many customers do not want to keep opening the AWS Console every time they need to find a product or manage a subscription. They want these operations embedded directly into the tools they already use, such as a Slack chatbot, ServiceNow integration for IT request approvals, or an internal procurement reporting dashboard.
 
----
+AWS introduces a sample solution based on two main APIs:
 
-### [3.1 Blog 1 – Monitoring Amazon EC2 with Amazon CloudWatch](3.1-blog1/)
+- **Discovery API**: search, filter, and compare products in the catalog.
+- **Agreement API**: manage subscriptions programmatically.
 
-Amazon EC2 is one of the most widely used compute services on AWS. When running EC2 instances in a production environment, monitoring system performance is important for identifying potential issues early.
+The solution provides three main functions:
 
-This blog explains how to use **Amazon CloudWatch** to collect and monitor EC2 metrics such as **CPU Utilization**, and how to configure a **CloudWatch Alarm** to automatically detect when CPU utilization exceeds a defined threshold.
+- **Agreement management** — view, filter, and check details of existing subscriptions.
+- **Product search and subscription** — compare plans and subscribe directly through the API.
+- **Reporting** — automatically generate spending reports, expiration alerts, audit compliance information, and optionally enable AI-powered analysis through Strands Agents running on Claude through Amazon Bedrock.
 
-The monitoring architecture can be described as:
+The solution uses a serverless architecture including **CloudFront + S3** for the frontend, **API Gateway + Lambda** for application logic, **DynamoDB** for caching data, **Cognito** for JWT authentication, and **EventBridge** for scheduled synchronization.
 
-**Amazon EC2 → Amazon CloudWatch → CloudWatch Alarm → Notification**
+The product subscription process can be implemented through five main API steps:
 
-CloudWatch allows administrators to monitor system performance, create dashboards, and configure alarms when workloads show abnormal behavior.
+**ListPurchaseOptions → GetOffer → GetOfferTerms → CreateAgreementRequest → AcceptAgreementRequest**
 
-The blog also presents a practical testing scenario: generating CPU load on an EC2 instance, observing the metric in CloudWatch, verifying that the alarm changes to **In alarm**, and finally reducing the CPU load to confirm that the alarm returns to **OK**.
-
----
-
-### [3.2 Blog 2 – Connecting Amazon S3 from a VPC using VPC Endpoints](3.2-blog2/)
-
-Workloads running inside an **Amazon VPC** often need to access Amazon S3 for storing and retrieving data. However, for architectures with strict security requirements, sending traffic through the public Internet may not be the preferred approach.
-
-**Amazon VPC Endpoint** provides private connectivity between a VPC and supported AWS services.
-
-This blog focuses on two major endpoint models:
-
-- **Gateway VPC Endpoint**
-- **Interface VPC Endpoint**
-
-With a Gateway Endpoint, the VPC route table is configured so that traffic destined for Amazon S3 is routed through the endpoint instead of requiring an Internet Gateway or NAT Gateway.
-
-The architecture is:
-
-**EC2 Private Subnet → Route Table → S3 Gateway Endpoint → Amazon S3**
-
-Gateway Endpoints are simple to configure, suitable for workloads running inside a VPC, and can be combined with **Endpoint Policies** to control access.
-
-The blog also explains **Interface Endpoints**, which are based on AWS PrivateLink. An Interface Endpoint creates an Elastic Network Interface with a private IP address inside selected subnets, allowing workloads to connect to supported services through private networking.
-
-This comparison helps clarify how to select an appropriate VPC Endpoint architecture based on **networking, security, connectivity, and cost requirements**.
+This approach transforms operations that traditionally require AWS Console access into a self-service workflow embedded directly into internal enterprise systems.
 
 ---
 
-### [3.3 Blog 3 – Building Event-Driven Architectures with Amazon SQS and AWS Lambda](3.3-blog3/)
+### [3.2 Blog 2 – Continuing the AWS Marketplace Topic: When Contract Renewal Is Also Automated](3.2-Blog-2/)
 
-In modern cloud architectures, an **event-driven architecture** allows different components of a system to operate independently while providing better scalability.
+Most contract renewals are not really new decisions. The buyer is still using the service successfully and wants to continue, while the seller also wants to retain the customer. However, the renewal date can still pass simply because of administrative procedures such as creating the offer again, waiting for approval again, and signing again.
 
-This blog explains how to combine **Amazon SQS** and **AWS Lambda** to build an asynchronous processing system.
+**Private Offer Auto-Renewals** provides a way to automate this process. The seller and buyer can agree on the original terms and future renewal terms once when the offer is created. After that, each cycle can renew automatically without requiring another manual acceptance.
 
-The overall architecture is:
+The solution provides three pricing methods for renewal:
 
-**Application → Amazon SQS → AWS Lambda → Processing**
+- **Flat renewal** — keeps exactly the same price as the original across renewal cycles.
+- **Fixed percentage uplift** — increases the price by a fixed percentage for each renewal cycle, with compounding.
+- **Percentage range uplift** — defines a minimum and maximum percentage increase, with the exact percentage finalized closer to the renewal date.
 
-Instead of directly calling the processing service, the application sends messages to Amazon SQS. Lambda then retrieves messages from the queue and processes them automatically.
+Both parties receive notifications at important milestones, including upcoming renewal dates, price adjustment deadlines, opt-out deadlines, and completed renewals. Renewal events can also be integrated with **Amazon EventBridge**, allowing connection with CRM, billing, and internal alerting systems.
 
-This architecture provides several benefits:
-
-- Reduces direct dependencies between services.
-- Handles workload spikes more effectively.
-- Allows Lambda to automatically scale execution.
-- Amazon SQS buffers messages during traffic spikes.
-- Processing speed can be controlled through concurrency configuration.
-
-The blog also explores **AWS Lambda scaling and concurrency when Amazon SQS is used as an event source**, including improvements to polling and Lambda scale-up behavior for event-driven workloads.
-
-This pattern is suitable for applications requiring **background jobs, asynchronous processing, queue-based workloads, and serverless architectures**.
+This approach helps reduce manual work, prevent service interruptions, provide predictable renewal pricing, and make contract management more efficient.
 
 ---
 
 ## Summary
 
-The three blog topics cover three important aspects of building systems on AWS:
+The two blog topics cover two important aspects of AWS Marketplace:
 
-1. **CloudWatch** – system monitoring and alerting.
-2. **VPC Endpoint** – private connectivity and improved security.
-3. **SQS + Lambda** – serverless event-driven architecture.
+1. **AWS Marketplace APIs** — embedding software procurement into internal workflows through APIs and serverless architecture.
+2. **Private Offer Auto-Renewals** — automating the renewal of existing software contracts.
 
-Studying these topics provided practical knowledge of **AWS Cloud, Networking, Monitoring, Security, and Serverless Architecture**.
+Together, these topics demonstrate how AWS Marketplace can support both **new software procurement** and **ongoing contract management**, while reducing manual operational work.
+
+The Facebook account used to publish the posts can be verified through:
+
+[**Nguyen Thau – Facebook**](https://www.facebook.com/profile.php?id=61592819087978)

@@ -2,412 +2,412 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.1-workshop-overview/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.1-workshop-overview/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.1-workshop-overview/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.1-workshop-overview/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.1-workshop-overview/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.1-workshop-overview/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.1-monitor-cpu/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.1-monitor-cpu/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.1-generate-cpu-load/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.1-generate-cpu-load/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.1-select-aws-region/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.1-create-verify-vpc/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.1-create-verify-vpc/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.1-create-verify-vpc/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.5-iam/5.5.1-create-cloudwatch-agent-role/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.5-iam/5.5.1-create-cloudwatch-agent-role/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.1-launch-ec2/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.1-launch-ec2/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.1-launch-ec2/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.1-launch-ec2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.1-launch-ec2/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.1-launch-ec2/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.1-install-agent/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.1-install-agent/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.1-blog-1/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.1-blog-1/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/1-week1/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/1-week1/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/2-proposal/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/2-proposal/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.2-monitor-logs/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/5.10.2-monitor-logs/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.2-verify-alarm/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.2-verify-alarm/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.2-verify-alarm/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.2-verify-alarm/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.2-verify-alarm/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.2-verify-alarm/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.2-prerequisite/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.2-prerequisite/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.2-prerequisite/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.2-prerequisite/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.2-prerequisite/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.2-prerequisite/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.2-prepare-aws-account/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.2-create-public-subnet/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.2-create-public-subnet/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.2-create-public-subnet/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.2-create-public-subnet/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.2-create-public-subnet/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.2-create-public-subnet/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.2-connect-ssh/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.2-connect-ssh/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.2-connect-ssh/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.2-connect-ssh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.2-connect-ssh/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.2-connect-ssh/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.2-configure-agent/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.2-configure-agent/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.2-blog-2/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.2-blog-2/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/4-events-participated/4.2-event2/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/4.2-event2/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/2-week2/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/2-week2/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.3-verify-sns-email/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.3-verify-sns-email/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.3-prepare-project/5.3.3-verify-aws-environment/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.3-configure-security-group/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.3-configure-security-group/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.3-configure-security-group/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/5.4.3-configure-security-group/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.3-configure-security-group/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/5.4.3-configure-security-group/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.3-verify-ec2/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.3-verify-ec2/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.3-verify-ec2/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/5.6.3-verify-ec2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.3-verify-ec2/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/5.6.3-verify-ec2/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.3-start-and-verify/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.3-start-and-verify/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.3-blog-3/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/3-week3/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/3-week3/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/4-events-participated/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/4-events-participated/</loc>
-  </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.4-verify-recovery/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.4-verify-recovery/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.4-verify-recovery/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/5.11.4-verify-recovery/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.4-verify-recovery/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/5.11.4-verify-recovery/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.4-networking/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.4-networking/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.4-networking/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.4-configure-system-logs/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.4-configure-system-logs/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/4-week4/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/4-week4/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.5-iam/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.5-iam/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.5-iam/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.5-iam/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.5-iam/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.5-iam/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/5-week5/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/5-week5/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.6-ec2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.6-ec2/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/6-self-assessment/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/6-self-assessment/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/6-week6/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/6-week6/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.7-cloudwatch-agent/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.7-cloudwatch-agent/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/7-sharing-and-feedback/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/7-sharing-and-feedback/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/7-week7/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/7-week7/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.8-cloudwatch-logs/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.8-cloudwatch-logs/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.8-cloudwatch-logs/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.8-cloudwatch-logs/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.8-cloudwatch-logs/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.8-cloudwatch-logs/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/8-week8/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/8-week8/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/9-week9/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/9-week9/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.10-monitoring/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.10-monitoring/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.10-monitoring/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/10-week10/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/1-worklog/10-week10/</loc>
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.11-testing/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.11-testing/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.11-testing/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.12-cleanup-resources/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/5-workshop/5.12-cleanup-resources/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/3-blogs-posted/3.3-blog-3/</loc>
+  </url><url>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/categories/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/categories/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/categories/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/categories/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/tags/</loc>
+    <loc>http://localhost:1313/QuangThienWorkshop-template/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/tags/"
+                href="http://localhost:1313/QuangThienWorkshop-template/vi/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/tags/"
+                href="http://localhost:1313/QuangThienWorkshop-template/en/tags/"
                 />
   </url>
 </urlset>

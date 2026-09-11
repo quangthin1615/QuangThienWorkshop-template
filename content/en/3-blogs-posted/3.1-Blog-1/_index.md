@@ -1,67 +1,47 @@
 ---
-title: "Monitoring Amazon EC2 with Amazon CloudWatch and Automated Alarms"
+title: "blog-1"
 weight: 1
 ---
 
+# UNDERSTANDING AWS MARKETPLACE APIs: EMBEDDING SOFTWARE PROCUREMENT INTO INTERNAL WORKFLOWS
 
-## 1. Overview
+🔹 **The problem**
 
-Running an Amazon EC2 instance does not automatically mean that the application is healthy. CPU utilization can spike, network traffic can become abnormal, or resources can approach capacity limits.
+AWS Marketplace provides many benefits: consolidated billing with AWS, pre-negotiated terms, a wide range of providers, and easier compliance management. However, many customers do not want to keep opening the AWS Console every time they need to find a product or manage a subscription. They want these operations embedded directly into the tools they already use, such as a Slack chatbot, ServiceNow integration for IT request approvals, or an internal procurement reporting dashboard.
 
-Amazon CloudWatch provides metric collection, visualization, dashboards, and CloudWatch Alarms. Common EC2 metrics include CPUUtilization, NetworkIn, NetworkOut, DiskReadOps, and DiskWriteOps.
+🔹 **Solution: MP-Buyer Portal**
 
-![EC2 and CloudWatch architecture](/images/blog1-01-ec2-cloudwatch.png)
+AWS introduces a sample solution based on two main APIs:
 
-## 2. Architecture
+- Discovery API: search, filter, and compare products in the catalog.
+- Agreement API: manage subscriptions programmatically.
 
-The basic flow is:
+Three main functions:
 
-**Amazon EC2 → CloudWatch Metrics → CloudWatch Dashboard/Alarm → notification or operational action**
+1️⃣ Agreement management — view, filter, and check details of existing subscriptions.
 
-EC2 produces metrics and CloudWatch stores them for monitoring. An alarm evaluates the configured condition and changes state when the condition is met.
+2️⃣ Product search & subscription — compare plans and subscribe directly through the API.
 
-![EC2 metrics to CloudWatch](/images/blog1-02-cloudwatch-metric.png)
+3️⃣ Reporting — automatically generate spending reports, expiration alerts, audit compliance information, and optionally enable AI-powered analysis through Strands Agents (running on Claude through Amazon Bedrock).
 
-## 3. Monitoring CPU
+🔹 **Solution architecture**
 
-CPUUtilization is a useful starting metric. Sustained CPU utilization above 80% may indicate increased workload or an application issue.
+What I like most is the fully serverless architecture, with almost no cost when the system is idle: CloudFront + S3 serves the frontend, API Gateway + Lambda handles the logic (agreement/search/subscription, AI reporting, and data synchronization), DynamoDB caches data, Cognito authenticates users through JWT, and EventBridge triggers synchronization every 6 hours.
 
-Charts help identify normal levels, traffic spikes, abnormal behavior, and long-term trends. Thresholds should be based on the actual workload.
+![MP-Buyer Portal Architecture](/QuangThienWorkshop-template/images/mp-buyer-architecture6-3v2fig1.drawio-1024x714.png)
 
-## 4. CloudWatch Alarm
+🔹 **Product subscription flow (5 API steps)**
 
-A simple alarm can use:
+ListPurchaseOptions → GetOffer → GetOfferTerms → CreateAgreementRequest → AcceptAgreementRequest.
 
-- Metric: EC2 CPUUtilization
-- Statistic: Average
-- Period: 5 minutes
-- Threshold: greater than 80%
-- Action: send an SNS notification
+In essence, it works the same way as AWS Console, except that everything runs through APIs on a self-built interface — allowing even users without direct Console access to use the workflow.
 
-When the condition is met, the alarm enters **ALARM**. When the metric returns to a safe range, it can return to **OK**.
+🔹 **Personal impression**
 
-![CloudWatch Alarm](/images/blog1-03-cloudwatch-alarm.png)
+This is a practical example of transforming an operation that traditionally "requires access to the Console" into a self-service workflow for the procurement team, while preserving the core benefits of AWS Marketplace. The integration of AI to automatically generate summarized reports is also an interesting direction for applying AI to daily operations, rather than limiting AI usage to chatbots.
 
-## 5. Practical example
+📌 **Source:** Kenneth Walsh, "How you can embed procurement into your workflows with AWS Marketplace APIs", AWS Marketplace Blog, 04/09/2026.
 
-A web server normally runs at 20–40% CPU. During a traffic spike, CPU rises above 80%.
+🔗 [https://aws.amazon.com/blogs/awsmarketplace/how-you-can-embed-procurement-into-your-workflows-with-aws-marketplace-apis/](https://aws.amazon.com/blogs/awsmarketplace/how-you-can-embed-procurement-into-your-workflows-with-aws-marketplace-apis/)
 
-Workflow:
-
-1. EC2 produces high CPU utilization.
-2. CloudWatch records the metric.
-3. The alarm evaluates the condition.
-4. The alarm enters ALARM.
-5. SNS can notify the administrator.
-6. The administrator checks the application and logs.
-7. When load decreases, the alarm returns to OK.
-
-## 6. Key takeaway
-
-Monitoring is not only about viewing graphs. The value comes from turning metrics into actionable information through **monitor → detect → alert → respond**.
-
-## 7. References
-
-- [AWS News Blog – Amazon CloudWatch – Alarm Actions](https://aws.amazon.com/blogs/aws/amazon-cloudwatch-alarm-actions/)
-
-- [AWS Compute Blog – Automating Amazon EC2-Windows EBS Volumes monitoring and creating alarms](https://aws.amazon.com/blogs/compute/automating-amazon-ec2-windows-ebs-volumes-monitoring-and-creating-alarms/)
+**#AWS** **#AWSMarketplace** **#CloudComputing** **#Internship** **#Serverless**

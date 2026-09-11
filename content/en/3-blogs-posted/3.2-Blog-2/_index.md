@@ -1,69 +1,43 @@
 ---
-title: "Connecting Amazon S3 from a VPC with VPC Endpoints"
+title: "blog-2"
 weight: 2
 ---
 
+## AWS MARKETPLACE: WHEN CONTRACT RENEWAL IS ALSO AUTOMATED
 
-## 1. Overview
+🔹 **The problem**
 
-Workloads inside an Amazon VPC often need to read or write data in Amazon S3. A VPC endpoint provides a private entry point from the VPC to supported AWS services.
+According to the article, most contract renewals are not really a new decision — the buyer is still using the service successfully and wants to continue, while the seller also wants to retain the customer. Neither side actually wants to stop, but the renewal date can still pass simply because of administrative procedures: creating the offer again, waiting for approval again, and signing again. The problem becomes even greater as the number of contracts that need to be renewed increases.
 
-For S3, two important choices are **Gateway VPC Endpoints** and **Interface VPC Endpoints**.
+🔹 **How it works**
 
-![VPC to S3](/images/blog2-01-vpc-s3.png)
+The seller and buyer only need to agree on the original terms AND the future renewal terms once, at the time the offer is created. After that, each cycle renews automatically — keeping the price, duration, currency, payment terms, and attached license agreement unchanged — without anyone having to click "Accept" again. Both sides still have the right to opt out of the renewal if they want to stop.
 
-## 2. Gateway VPC Endpoint
+🔹 **3 pricing methods for renewal**
 
-A gateway endpoint is a common choice for workloads inside a VPC accessing S3 in the Region. The route table directs S3 traffic through the endpoint.
+- Flat renewal: keeps exactly the same price as the original across renewal cycles.
+- Fixed percentage uplift: increases the price by a fixed percentage each time it renews (with compounding — for example, with a 2% annual increase, a $10,000 contract becomes $10,200 and then $10,404 in the next cycle).
+- Percentage range uplift: sets a predefined percentage increase range (min–max), with the exact percentage finalized closer to the renewal date — suitable when pricing needs to follow inflation or an index such as CPI.
 
-An Internet Gateway or NAT Gateway is not required solely for S3 access.
+🔹 **Notifications & integration**
 
-![Gateway VPC Endpoint](/images/blog2-02-gateway-endpoint.png)
+Both parties are notified at important milestones: an upcoming renewal, the price adjustment deadline, the opt-out deadline, and when the renewal is completed. These events can also be sent through Amazon EventBridge, so they can be connected to the company’s CRM, billing system, or internal alerting — quite seamless with the way the MP-Buyer Portal in the previous article uses EventBridge to synchronize data every 6 hours.
 
-Advantages:
-- simple;
-- suitable for EC2 inside a VPC;
-- supports endpoint policies;
-- generally cost-efficient.
+🔹 **Benefits for buyers**
 
-## 3. Interface VPC Endpoint
+The service does not get interrupted between contract periods, the full renewal schedule can be viewed in one place, pricing is known in advance (there is no need to negotiate again), and renewal transactions still count toward the committed spend with AWS.
 
-An interface endpoint uses AWS PrivateLink. AWS creates an Elastic Network Interface with a private IP address in the selected subnet.
+🔹 **Personal impression**
 
-Workloads connect to the private IP and traffic remains on the AWS network.
+When combined with the MP-Buyer Portal article from last week, I feel AWS is addressing the "software procurement" problem from both ends: on one side, making it easier to find and purchase new products through APIs; on the other side, making it less labor-intensive to maintain existing contracts. Both follow the same spirit — reduce the amount of "manual work" so that procurement teams can spend more time on real decisions instead of chasing paperwork deadlines.
 
-![Interface VPC Endpoint](/images/blog2-03-interface-endpoint.png)
 
-This is useful for broader private connectivity requirements, including architectures involving on-premises environments and PrivateLink.
+![Renewal terms configuration interface when creating a private offer on AWS Marketplace](/QuangThienWorkshop-template/images/private-offer-auto-renewals-renewal-terms.png)
 
-## 4. Comparison
+*Renewal terms configuration interface when creating a private offer on AWS Marketplace — excerpt from the original article, source: AWS Marketplace Blog.*
 
-| Criteria | Gateway Endpoint | Interface Endpoint |
-|---|---|---|
-| Technology | Route table | AWS PrivateLink |
-| S3 | Yes | Yes |
-| Main component | Route table | ENI/private IP |
-| Typical use | VPC workloads | PrivateLink/private connectivity |
-| Cost profile | Usually more cost-efficient | Endpoint and data processing charges |
+📌 **Source:** Erin Smith and Alastair Campbell, "Private offer auto-renewals: Scale predictable revenue with AWS Marketplace", AWS Marketplace Blog, 02/09/2026.
 
-## 5. Security
+🔗 [https://aws.amazon.com/blogs/awsmarketplace/private-offer-auto-renewals-scale-predictable-revenue-with-aws-marketplace/](https://aws.amazon.com/blogs/awsmarketplace/private-offer-auto-renewals-scale-predictable-revenue-with-aws-marketplace/)
 
-Private connectivity does not automatically provide unrestricted access. A strong design can combine IAM policies, S3 bucket policies, endpoint policies, and least-privilege access. Security groups are also important for interface endpoints.
-
-## 6. Example
-
-**EC2 private subnet → Route Table → S3 Gateway Endpoint → Amazon S3**
-
-The EC2 instance does not need a public IP or NAT Gateway solely for S3 access.
-
-## 7. Key takeaway
-
-VPC endpoints are an important building block for private-by-design AWS networking. Gateway endpoints are commonly suitable for VPC workloads accessing S3, while interface endpoints support broader PrivateLink requirements.
-
-## 8. References
-
-1. [Choosing Your VPC Endpoint Strategy for Amazon S3 – AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/choosing-your-vpc-endpoint-strategy-for-amazon-s3/)
-
-2. [Reduce Cost and Increase Security with Amazon VPC Endpoints – AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/reduce-cost-and-increase-security-with-amazon-vpc-endpoints/)
-
-3. [Introducing private DNS support for Amazon S3 with AWS PrivateLink – AWS Storage Blog](https://aws.amazon.com/blogs/storage/introducing-private-dns-support-for-amazon-s3-with-aws-privatelink/)
+**#AWS** **#AWSMarketplace** **#CloudComputing** **#Internship** **#Procurement**

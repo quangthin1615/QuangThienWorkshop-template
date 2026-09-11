@@ -1,91 +1,69 @@
 ---
-title: "3-Các bài Blogs đã đăng"
+title: "3-Các bài blogs đã đăng"
 weight: 3
 ---
 
-Trong thời gian thực tập, mình đã tìm hiểu và tổng hợp **3 bài blog kỹ thuật chuyên sâu về Amazon Web Services (AWS)**, tập trung vào các chủ đề **giám sát hệ thống, kết nối mạng và kiến trúc serverless**. Các bài viết giúp củng cố kiến thức thực tế về việc triển khai, bảo mật và vận hành workload trên AWS.
+Trong thời gian thực tập, mình đã nghiên cứu và tổng hợp **hai chủ đề blog kỹ thuật liên quan đến Amazon Web Services (AWS)**, tập trung vào **AWS Marketplace, mua sắm phần mềm, kiến trúc serverless và tự động hóa quy trình mua sắm**. Những chủ đề này giúp củng cố hiểu biết thực tế của mình về việc tích hợp các dịch vụ AWS vào workflow doanh nghiệp và tự động hóa các quy trình mua sắm phần mềm.
 
-| **STT** | **Đề tài** | **Phạm trù** | **Ngày đăng** |
-|---|---|---|---|
-| Blog 1 | **Giám sát Amazon EC2 với Amazon CloudWatch và thiết lập cảnh báo** | Monitoring & Operations |  |
-| Blog 2 | **Kết nối Amazon S3 từ VPC bằng VPC Endpoint** | Networking & Security |  |
-| Blog 3 | **Xây dựng kiến trúc hướng sự kiện với Amazon SQS và AWS Lambda** | Serverless & Event-Driven Architecture |  |
-
----
-
-### [3.1 Blog 1 – Giám sát Amazon EC2 với Amazon CloudWatch](3.1-blog1/)
-
-Amazon EC2 là một trong những dịch vụ compute phổ biến nhất trên AWS. Khi triển khai EC2 trong môi trường production, việc theo dõi tình trạng hoạt động của instance là rất quan trọng để phát hiện sớm các vấn đề về hiệu năng.
-
-Bài blog trình bày cách sử dụng **Amazon CloudWatch** để thu thập và theo dõi các metric của EC2 như **CPU Utilization**, đồng thời xây dựng **CloudWatch Alarm** để tự động phát hiện khi CPU vượt quá ngưỡng được thiết lập.
-
-Kiến trúc giám sát có thể được mô tả:
-
-**Amazon EC2 → Amazon CloudWatch → CloudWatch Alarm → Notification**
-
-Thông qua CloudWatch, quản trị viên có thể theo dõi tình trạng hệ thống theo thời gian thực, xây dựng dashboard và thiết lập cảnh báo khi workload có dấu hiệu bất thường.
-
-Bài viết cũng trình bày một kịch bản thực tế: tạo tải CPU trên EC2, quan sát metric trên CloudWatch, kiểm tra trạng thái Alarm chuyển sang **In alarm**, sau đó giảm tải và xác nhận Alarm quay trở lại trạng thái **OK**.
+| **#** | **Đề tài** | **Phạm trù** | **Ngày đăng** | **Chứng minh Facebook** |
+|---|---|---|---|---|
+| Blog 1 | **Tìm hiểu về AWS Marketplace APIs: Đưa quy trình mua sắm phần mềm vào ngay trong workflow nội bộ** | AWS Marketplace & Serverless Architecture | 09/09/2026 | [Nguyen Thau](https://www.facebook.com/profile.php?id=61592819087978) |
+| Blog 2 | **Tiếp nối chủ đề AWS Marketplace: Khi việc gia hạn hợp đồng cũng được tự động hóa** | AWS Marketplace & Procurement Automation | 11/09/2026 | [Nguyen Thau](https://www.facebook.com/profile.php?id=61592819087978) |
 
 ---
 
-### [3.2 Blog 2 – Kết nối Amazon S3 từ VPC bằng VPC Endpoint](3.2-blog2/)
+### [3.1 Blog 1 – Tìm hiểu về AWS Marketplace APIs: Đưa quy trình mua sắm phần mềm vào ngay trong workflow nội bộ](3.1-Blog-1/)
 
-Workload chạy trong **Amazon VPC** thường cần truy cập Amazon S3 để lưu trữ hoặc lấy dữ liệu. Tuy nhiên, trong nhiều kiến trúc yêu cầu bảo mật cao, việc đưa traffic ra Internet không phải là lựa chọn tối ưu.
+AWS Marketplace mang lại nhiều lợi ích: gộp hóa đơn với AWS, các điều khoản được đàm phán sẵn, nhiều nhà cung cấp và quản lý tuân thủ dễ dàng hơn. Tuy nhiên, nhiều khách hàng không muốn liên tục mở AWS Console mỗi khi cần tìm một sản phẩm hoặc quản lý một subscription. Họ muốn các thao tác này được nhúng trực tiếp vào những công cụ mà họ đang sử dụng, chẳng hạn như chatbot Slack, tích hợp ServiceNow để phê duyệt các yêu cầu IT, hoặc một dashboard nội bộ để báo cáo hoạt động mua sắm.
 
-**Amazon VPC Endpoint** cung cấp khả năng kết nối private giữa VPC và các dịch vụ AWS được hỗ trợ.
+AWS giới thiệu một solution mẫu dựa trên hai API chính:
 
-Bài blog tập trung vào hai mô hình chính:
+- **Discovery API**: tìm kiếm, lọc và so sánh các sản phẩm trong catalog.
+- **Agreement API**: quản lý subscription theo cách lập trình.
 
-- **Gateway VPC Endpoint**
-- **Interface VPC Endpoint**
+Giải pháp cung cấp ba chức năng chính:
 
-Với Gateway Endpoint, route table của VPC được cấu hình để traffic tới Amazon S3 đi qua endpoint thay vì phải sử dụng Internet Gateway hoặc NAT Gateway.
+- **Quản lý agreement** — xem, lọc và kiểm tra chi tiết các subscription hiện có.
+- **Tìm kiếm và đăng ký sản phẩm** — so sánh các gói và subscribe trực tiếp thông qua API.
+- **Báo cáo** — tự động tạo báo cáo chi tiêu, cảnh báo hết hạn, thông tin audit compliance và tùy chọn bật phân tích bằng AI thông qua Strands Agents chạy trên Claude thông qua Amazon Bedrock.
 
-Mô hình:
+Giải pháp sử dụng kiến trúc serverless bao gồm **CloudFront + S3** cho frontend, **API Gateway + Lambda** cho logic ứng dụng, **DynamoDB** để cache dữ liệu, **Cognito** để xác thực JWT và **EventBridge** cho việc đồng bộ theo lịch.
 
-**EC2 Private Subnet → Route Table → S3 Gateway Endpoint → Amazon S3**
+Quy trình đăng ký sản phẩm có thể được triển khai thông qua năm bước API chính:
 
-Gateway Endpoint có ưu điểm là cấu hình đơn giản, phù hợp với workload chạy trong VPC và có thể kết hợp với **Endpoint Policy** để kiểm soát quyền truy cập.
+**ListPurchaseOptions → GetOffer → GetOfferTerms → CreateAgreementRequest → AcceptAgreementRequest**
 
-Bài viết cũng phân tích **Interface Endpoint** dựa trên AWS PrivateLink. Interface Endpoint sử dụng Elastic Network Interface với private IP trong subnet, cho phép workload kết nối tới dịch vụ thông qua mạng private.
-
-Qua đó, bài blog giúp làm rõ cách lựa chọn VPC Endpoint phù hợp dựa trên yêu cầu về **networking, security, connectivity và cost optimization**.
+Cách tiếp cận này biến các thao tác vốn truyền thống yêu cầu truy cập AWS Console thành một workflow self-service được nhúng trực tiếp vào các hệ thống doanh nghiệp nội bộ.
 
 ---
 
-### [3.3 Blog 3 – Xây dựng kiến trúc hướng sự kiện với Amazon SQS và AWS Lambda](3.3-blog3/)
+### [3.2 Blog 2 – Tiếp nối chủ đề AWS Marketplace: Khi việc gia hạn hợp đồng cũng được tự động hóa](3.2-Blog-2/)
 
-Trong kiến trúc cloud hiện đại, mô hình **event-driven architecture** giúp các thành phần của hệ thống hoạt động độc lập và có khả năng mở rộng tốt hơn.
+Phần lớn các lần gia hạn hợp đồng thực sự không phải là những quyết định mới. Bên mua vẫn đang sử dụng dịch vụ tốt và muốn tiếp tục, trong khi bên bán cũng muốn giữ khách hàng. Tuy nhiên, ngày gia hạn vẫn có thể bị trôi qua chỉ vì các thủ tục hành chính như tạo lại offer, chờ phê duyệt lại và ký lại.
 
-Bài blog trình bày cách kết hợp **Amazon SQS** và **AWS Lambda** để xây dựng một hệ thống xử lý công việc bất đồng bộ.
+**Private Offer Auto-Renewals** cung cấp một cách để tự động hóa quy trình này. Bên bán và bên mua có thể thống nhất các điều khoản ban đầu và các điều khoản gia hạn trong tương lai một lần khi offer được tạo. Sau đó, mỗi chu kỳ có thể tự động renew mà không cần thêm một lần chấp nhận thủ công.
 
-Mô hình tổng quát:
+Giải pháp cung cấp ba phương thức tính giá khi gia hạn:
 
-**Application → Amazon SQS → AWS Lambda → Processing**
+- **Flat renewal** — giữ nguyên chính xác mức giá ban đầu trong các chu kỳ gia hạn.
+- **Fixed percentage uplift** — tăng giá theo một tỷ lệ phần trăm cố định cho mỗi chu kỳ gia hạn, với tính lũy kép.
+- **Percentage range uplift** — xác định mức tăng phần trăm tối thiểu và tối đa, với tỷ lệ chính xác được chốt gần thời điểm gia hạn.
 
-Ứng dụng gửi message vào Amazon SQS thay vì trực tiếp gọi service xử lý. Lambda sau đó lấy message từ queue và thực hiện xử lý tự động.
+Cả hai bên đều nhận được thông báo tại các mốc quan trọng, bao gồm ngày gia hạn sắp tới, thời hạn điều chỉnh giá, thời hạn opt-out và khi việc gia hạn hoàn tất. Các sự kiện gia hạn cũng có thể được tích hợp với **Amazon EventBridge**, cho phép kết nối với CRM, hệ thống billing và các hệ thống cảnh báo nội bộ.
 
-Cách tiếp cận này mang lại nhiều lợi ích:
-
-- Giảm sự phụ thuộc trực tiếp giữa các service.
-- Có khả năng xử lý workload tăng đột biến.
-- Lambda tự động mở rộng số lượng execution.
-- Amazon SQS giúp lưu trữ message khi workload tăng cao.
-- Có thể kiểm soát tốc độ xử lý thông qua cơ chế concurrency.
-
-Bài viết cũng tìm hiểu khả năng **scaling và concurrency của AWS Lambda khi sử dụng Amazon SQS làm event source**, qua đó cho thấy cách AWS cải thiện tốc độ polling và khả năng mở rộng Lambda trong các hệ thống event-driven.
-
-Đây là một pattern phù hợp cho các ứng dụng cần xử lý **background jobs, asynchronous processing, queue-based workload và serverless architecture**.
+Cách tiếp cận này giúp giảm công việc thủ công, ngăn ngừa gián đoạn dịch vụ, cung cấp mức giá gia hạn có thể dự đoán và giúp việc quản lý hợp đồng hiệu quả hơn.
 
 ---
 
 ## Tổng kết
 
-Ba bài blog tập trung vào ba khía cạnh quan trọng khi xây dựng hệ thống trên AWS:
+Hai chủ đề blog bao quát hai khía cạnh quan trọng của AWS Marketplace:
 
-1. **CloudWatch** – giám sát và cảnh báo hệ thống.
-2. **VPC Endpoint** – xây dựng kết nối private và tăng cường bảo mật.
-3. **SQS + Lambda** – xây dựng kiến trúc serverless hướng sự kiện.
+1. **AWS Marketplace APIs** — đưa quy trình mua sắm phần mềm vào workflow nội bộ thông qua API và kiến trúc serverless.
+2. **Private Offer Auto-Renewals** — tự động hóa việc gia hạn các hợp đồng phần mềm hiện có.
 
-Thông qua việc tìm hiểu và thực hành các nội dung trên, mình có thêm kiến thức thực tế về **AWS Cloud, Networking, Monitoring, Security và Serverless Architecture**.
+Kết hợp lại, hai chủ đề cho thấy AWS Marketplace có thể hỗ trợ cả **việc mua sắm phần mềm mới** và **quản lý hợp đồng đang sử dụng**, đồng thời giảm công việc vận hành thủ công.
+
+Tài khoản Facebook được sử dụng để đăng các bài viết có thể được xác minh thông qua:
+
+[**Nguyen Thau – Facebook**](https://www.facebook.com/profile.php?id=61592819087978)

@@ -68,9 +68,9 @@
                 href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/4-c%C3%A1c-s%E1%BB%B1-ki%E1%BB%87n-%C4%91%C3%A3-tham-gia/4.1-event1/</loc>
-  </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.1-blog-1/</loc>
+  </url><url>
+    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/4-c%C3%A1c-s%E1%BB%B1-ki%E1%BB%87n-%C4%91%C3%A3-tham-gia/4.1-event1/</loc>
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/1-week1/</loc>
   </url><url>
@@ -150,9 +150,9 @@
                 href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.9-cloudwatch-alarm/5.9.2-configure-sns/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/4-c%C3%A1c-s%E1%BB%B1-ki%E1%BB%87n-%C4%91%C3%A3-tham-gia/4.2-event2/</loc>
-  </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.2-blog-2/</loc>
+  </url><url>
+    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/4-c%C3%A1c-s%E1%BB%B1-ki%E1%BB%87n-%C4%91%C3%A3-tham-gia/4.2-event2/</loc>
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/2-week2/</loc>
   </url><url>
@@ -209,8 +209,6 @@
                 />
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/1-nh%E1%BA%ADt-k%C3%BD-c%C3%B4ng-vi%E1%BB%87c/3-week3/</loc>
-  </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.3-blog-3/</loc>
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/4-c%C3%A1c-s%E1%BB%B1-ki%E1%BB%87n-%C4%91%C3%A3-tham-gia/</loc>
   </url><url>
@@ -363,6 +361,8 @@
                 hreflang="vi"
                 href="https://quangthin1615.github.io/QuangThienWorkshop-template/vi/5-workshop/5.12-cleanup-resources/"
                 />
+  </url><url>
+    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/3-c%C3%A1c-b%C3%A0i-blogs-%C4%91%C3%A3-%C4%91%C4%83ng/3.3-blog-3/</loc>
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/vi/</loc>
     <xhtml:link

@@ -1,67 +1,47 @@
 ---
-title: "Giám sát Amazon EC2 bằng Amazon CloudWatch và cảnh báo tự động"
+title: "blog-1"
 weight: 1
 ---
 
+# TÌM HIỂU VỀ AWS MARKETPLACE APIs: ĐƯA QUY TRÌNH MUA SẮM PHẦN MỀM VÀO NGAY TRONG WORKFLOW NỘI BỘ
 
-## 1. Tổng quan
+🔹 **Vấn đề đặt ra**
 
-Khi triển khai ứng dụng trên Amazon EC2, việc instance đang chạy không đồng nghĩa hệ thống luôn khỏe mạnh. CPU có thể tăng đột biến, lưu lượng mạng bất thường hoặc tài nguyên tiến gần giới hạn. Vì vậy cần một cơ chế theo dõi, phát hiện và cảnh báo.
+AWS Marketplace vốn mang lại nhiều lợi ích: gộp hóa đơn với AWS, điều khoản đàm phán sẵn, đa dạng nhà cung cấp, dễ kiểm soát tuân thủ. Nhưng nhiều khách hàng không muốn cứ phải mở AWS Console mỗi lần cần tìm sản phẩm hay quản lý subscription. Họ muốn các thao tác này được nhúng thẳng vào công cụ họ đang dùng, ví dụ chatbot Slack, tích hợp ServiceNow để duyệt yêu cầu IT, hay dashboard nội bộ báo cáo mua sắm.
 
-Amazon CloudWatch cung cấp khả năng thu thập, trực quan hóa metric, xây dựng dashboard và tạo CloudWatch Alarm. Với EC2, các metric thường được theo dõi gồm CPUUtilization, NetworkIn, NetworkOut, DiskReadOps và DiskWriteOps.
+🔹 **Giải pháp: MP-Buyer Portal**
 
-![Kiến trúc EC2 và CloudWatch](/images/blog1-01-ec2-cloudwatch.png)
+AWS giới thiệu một solution mẫu dựa trên hai API chính:
 
-## 2. Kiến trúc
+- Discovery API: tìm kiếm, lọc, so sánh sản phẩm trong catalog.
+- Agreement API: quản lý subscription theo cách lập trình.
 
-Luồng cơ bản:
+Ba chức năng chính:
 
-**Amazon EC2 → CloudWatch Metrics → CloudWatch Dashboard/Alarm → thông báo hoặc hành động vận hành**
+1️⃣ Quản lý agreement — xem, lọc, kiểm tra chi tiết subscription hiện có.
 
-EC2 phát sinh metric; CloudWatch tiếp nhận và lưu trữ metric. Alarm đánh giá metric theo điều kiện đã cấu hình và thay đổi trạng thái khi điều kiện được đáp ứng.
+2️⃣ Tìm kiếm & đăng ký sản phẩm — so sánh gói, subscribe trực tiếp qua API.
 
-![Luồng metric EC2 vào CloudWatch](/images/blog1-02-cloudwatch-metric.png)
+3️⃣ Báo cáo — tự động tạo báo cáo chi tiêu, cảnh báo hết hạn, audit compliance, có thể bật thêm phân tích AI qua Strands Agents (chạy trên Claude, thông qua Amazon Bedrock).
 
-## 3. Theo dõi CPU
+🔹 **Kiến trúc giải pháp**
 
-CPUUtilization là metric dễ sử dụng để bắt đầu giám sát. Ví dụ, CPU duy trì trên 80% trong một khoảng thời gian có thể là dấu hiệu workload tăng hoặc ứng dụng gặp vấn đề.
+Điểm mình thích nhất là kiến trúc hoàn toàn serverless, gần như không tốn chi phí khi hệ thống idle: CloudFront + S3 phục vụ frontend, API Gateway + Lambda xử lý logic (agreement/tìm kiếm/đăng ký, báo cáo AI, đồng bộ dữ liệu), DynamoDB cache dữ liệu, Cognito xác thực JWT, EventBridge kích hoạt đồng bộ mỗi 6 tiếng.
 
-Biểu đồ giúp xác định mức bình thường, thời điểm tải tăng, các spike và xu hướng dài hạn. Ngưỡng nên dựa trên workload thực tế thay vì đặt tùy ý.
+![Kiến trúc MP-Buyer Portal](/QuangThienWorkshop-template/images/mp-buyer-architecture6-3v2fig1.drawio-1024x714.png)
 
-## 4. CloudWatch Alarm
+🔹 **Luồng đăng ký sản phẩm (5 bước qua API)**
 
-Một alarm có thể sử dụng:
+ListPurchaseOptions → GetOffer → GetOfferTerms → CreateAgreementRequest → AcceptAgreementRequest.
 
-- Metric: EC2 CPUUtilization
-- Statistic: Average
-- Period: 5 phút
-- Threshold: lớn hơn 80%
-- Action: gửi thông báo qua SNS
+Về bản chất giống hệt AWS Console làm, chỉ khác là chạy hoàn toàn qua API trên giao diện tự xây dựng — cho phép cả người không có quyền truy cập Console cũng dùng được.
 
-Khi điều kiện thỏa mãn, alarm chuyển sang **ALARM**. Khi metric trở lại vùng an toàn, alarm có thể trở về **OK**.
+🔹 **Cảm nhận cá nhân**
 
-![CloudWatch Alarm](/images/blog1-03-cloudwatch-alarm.png)
+Đây là ví dụ thực tế về cách biến thao tác "bắt buộc vào Console" thành workflow tự phục vụ cho team procurement, mà vẫn giữ nguyên lợi ích gốc của Marketplace. Phần tích hợp AI để tự sinh báo cáo tóm tắt cũng là hướng hay để áp dụng AI vào vận hành hằng ngày, không chỉ dừng ở chatbot.
 
-## 5. Ví dụ thực tế
+📌 **Nguồn:** Kenneth Walsh, "How you can embed procurement into your workflows with AWS Marketplace APIs", AWS Marketplace Blog, 04/09/2026.
 
-Một web server bình thường sử dụng CPU 20–40%. Khi có lượng truy cập lớn, CPU vượt 80%.
+🔗 [https://aws.amazon.com/blogs/awsmarketplace/how-you-can-embed-procurement-into-your-workflows-with-aws-marketplace-apis/](https://aws.amazon.com/blogs/awsmarketplace/how-you-can-embed-procurement-into-your-workflows-with-aws-marketplace-apis/)
 
-Quy trình:
-
-1. EC2 phát sinh CPU cao.
-2. CloudWatch ghi nhận metric.
-3. Alarm đánh giá điều kiện.
-4. Alarm chuyển sang ALARM.
-5. SNS có thể gửi thông báo.
-6. Quản trị viên kiểm tra ứng dụng và log.
-7. Khi tải giảm, alarm trở về OK.
-
-## 6. Bài học rút ra
-
-Giám sát không chỉ là xem biểu đồ. Giá trị nằm ở việc biến metric thành thông tin có thể hành động, tạo thành chu trình **monitor → detect → alert → respond**.
-
-## 7. Nguồn tham khảo
-
-- [AWS News Blog – Amazon CloudWatch – Alarm Actions](https://aws.amazon.com/blogs/aws/amazon-cloudwatch-alarm-actions/)
-
-- [AWS Compute Blog – Automating Amazon EC2-Windows EBS Volumes monitoring and creating alarms](https://aws.amazon.com/blogs/compute/automating-amazon-ec2-windows-ebs-volumes-monitoring-and-creating-alarms/)
+**#AWS** **#AWSMarketplace** **#CloudComputing** **#Internship** **#Serverless**

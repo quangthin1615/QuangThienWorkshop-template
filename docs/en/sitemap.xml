@@ -72,9 +72,9 @@
                 href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.9-cloudwatch-alarm/5.9.1-create-alarm/"
                 />
   </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/</loc>
-  </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.1-blog-1/</loc>
+  </url><url>
+    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/4-events-participated/4.1-event1/</loc>
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/1-week1/</loc>
   </url><url>
@@ -215,8 +215,6 @@
                 />
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.7-cloudwatch-agent/5.7.3-start-and-verify/</loc>
-  </url><url>
-    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.3-blog-3/</loc>
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/1-worklog/3-week3/</loc>
   </url><url>
@@ -373,6 +371,8 @@
                 hreflang="en"
                 href="https://quangthin1615.github.io/QuangThienWorkshop-template/en/5-workshop/5.12-cleanup-resources/"
                 />
+  </url><url>
+    <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/3-blogs-posted/3.3-blog-3/</loc>
   </url><url>
     <loc>https://quangthin1615.github.io/QuangThienWorkshop-template/en/</loc>
     <xhtml:link
