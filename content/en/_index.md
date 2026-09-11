@@ -20,7 +20,7 @@
 
 **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
 
-**Internship Period:** From May 25, 2026 to September 29, 2026
+**Internship Period:** From July 25, 2026 to September 27, 2026
 
 ![Ảnh đại diện của Phạm Quang Thiện](/QuangThienWorkshop-template/images/a.png)
 

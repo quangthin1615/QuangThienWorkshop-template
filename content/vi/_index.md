@@ -20,10 +20,10 @@
 
 **Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey
 
-**Thời gian thực tập:** Từ ngày 25-05-2026 đến ngày 29-09-2026
+**Thời gian thực tập:** Từ ngày 25-07-2026 đến ngày 27-09-2026
 
 ![Ảnh đại diện của Phạm Quang Thiện](/QuangThienWorkshop-template/images/a.png)
-
+### Nội dung báo cáo
 1. [Nhật ký công việc](1-Nhật%20ký%20công%20việc/)
 2. [Bản đề xuất](2-Bản%20đề%20xuất/)
 3. [Các bài blogs đã đăng](3-Các%20bài%20blogs%20đã%20đăng/)
